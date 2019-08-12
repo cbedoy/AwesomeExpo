@@ -49,10 +49,17 @@ export default class DetailScreen extends React.Component {
       headerStyle: {height: APPBAR_HEIGHT}
     };
     render() {
-      const {navigate} = this.props.navigation;
+      const { navigation } = this.props;
+      const userId = this.props.userId;
+      const feedGroup = this.props.feedGroup;
+      const activity = this.props.activity.id;
+
       return (
         <SinglePost 
-          activity={FeedDetailActivity}
+          activity={activity}
+          feedGroup={feedGroup}
+          userId={userId}
+          Activity={FeedDetailActivity}
         />
       );
     }

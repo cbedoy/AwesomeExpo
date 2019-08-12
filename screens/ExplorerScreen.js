@@ -54,11 +54,21 @@ export default class ExplorerScreen extends React.Component {
     );
   }
 
-  onClick = (props) => {
+  onClick = () => {
     const { navigate } = this.props.navigation;
 
-    console.log()
+    console.log("onClick")
+/*
+    const activity = navigation.getParam('activity');
+      const feedGroup = navigation.getParam('feedGroup');
+      const userId = navigation.getParam('userId');
     
-    navigate('Detail', {})
+    navigate('Detail', {
+      activity: "",
+      feedGroup: "",
+      userId: ""
+    })
+
+    */
   }
 }

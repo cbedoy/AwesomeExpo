@@ -4,7 +4,6 @@ import { StyleSheet, View, Image, Text } from "react-native";
 export default class HeaderView extends Component {
     render() {
       let activity = this.props.activity
-
       return (
         <View style={styles.root}>
           <View style={styles.headerStyle}>
