@@ -45,7 +45,7 @@ export default class ExplorerScreen extends React.Component {
         feedGroup="user"
         userId="carlos"
         Activity={(props) =>
-          <TouchableHighlight onPress={this.onClick()}>
+          <TouchableHighlight onPress={() => this.onClick({...props})}>
             <FeedActivity {...props} />
           </TouchableHighlight>
         }
@@ -54,21 +54,16 @@ export default class ExplorerScreen extends React.Component {
     );
   }
 
-  onClick = () => {
+  onClick = (data) => {
     const { navigate } = this.props.navigation;
-
-    console.log("onClick")
-/*
-    const activity = navigation.getParam('activity');
-      const feedGroup = navigation.getParam('feedGroup');
-      const userId = navigation.getParam('userId');
+    const _activity = data.activity;
+    const _feedGroup = data.feedGroup;
+    const _userId = data.userId;
     
     navigate('Detail', {
-      activity: "",
-      feedGroup: "",
-      userId: ""
+      activity: _activity,
+      feedGroup: _feedGroup,
+      userId: _userId
     })
-
-    */
   }
 }

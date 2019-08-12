@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Button, Text, View } from 'react-native';
 
 import { 
   SinglePost,
@@ -50,15 +50,31 @@ export default class DetailScreen extends React.Component {
     };
     render() {
       const { navigation } = this.props;
-      const userId = this.props.userId;
-      const feedGroup = this.props.feedGroup;
-      const activity = this.props.activity.id;
+      const _activity = navigation.getParam('activity', undefined);
+      const _feedGroup = navigation.getParam('feedGroup', undefined);
+      const _userId = navigation.getParam('userId', undefined);
+      let containerView;
+
+      console.log(_activity)
+
+      /*
+      if(_activity != undefined && _feedGroup != undefined && _userId != undefined){
+        containerView = <SinglePost 
+          activity={_activity}
+          feedGroup={_feedGroup}
+          userId={_userId}
+          Activity={FeedDetailActivity}
+        />
+      }else{
+        containerView = <Text>ERROR</Text>
+      }
+      */
 
       return (
         <SinglePost 
-          activity={activity}
-          feedGroup={feedGroup}
-          userId={userId}
+          activity={_activity}
+          feedGroup={_feedGroup}
+          userId={_userId}
           Activity={FeedDetailActivity}
         />
       );
