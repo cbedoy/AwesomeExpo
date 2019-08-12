@@ -4,24 +4,39 @@ import SafeAreaView from 'react-native-safe-area-view';
 import { 
     StreamApp,
     FlatFeed,
-    Activity,
     LikeButton,
-    StatusUpdateForm
+    CommentBox, 
  } from 'expo-activity-feed';
 
- import HeaderView from './components/HeaderView'
- import ContainerView from './components/ContainerView'
- import ContentView from './components/ContentView'
 
- const CustomActivity = (props) => {
+import HeaderView from './components/HeaderView'
+import ContainerView from './components/ContainerView'
+import ContentView from './components/ContentView'
+import DividerView from './components/DividerView' 
+
+const FeedActivity = (props) => {
   return (
     <View>
       <HeaderView {...props}/>
       <ContainerView {...props}/>
       <ContentView {...props}/>
+      <LikeButton {...props}
+        
+      />
+      <CommentBox {...props}
+        onSumbit={
+          console.log("Summited")
+        }
+        onReactionAdded={
+          console.log("Added")
+        }
+        verticalOffset={-200}
+      />
+      <DividerView />
     </View>
   );
-};
+}
+
 
 class App extends React.Component {  
   render(){
@@ -34,12 +49,14 @@ class App extends React.Component {
           <StreamApp
               apiKey={apiKey}
               appId={appId}
-              token={token}
-          >
+              token={token}>
             <FlatFeed
               feedGroup="user"
               userId="carlos"
-              Activity = {CustomActivity}
+              Activity = {(props) =>
+                <FeedActivity {...props}/>
+              } 
+              notify
             />
           </StreamApp>
         </SafeAreaView>

@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 
 export default class ContentView extends Component {
     render() {
-        let tweet = this.props.activity.tweet; 
+      let tweet = this.props.activity.tweet; 
       return (
         <View style={styles.root}>
           <Text style={styles.bodyText}>
