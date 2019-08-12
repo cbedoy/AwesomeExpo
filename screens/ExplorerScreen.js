@@ -1,0 +1,63 @@
+import React from 'react';
+import { View } from 'react-native';
+import { 
+    FlatFeed,
+    LikeButton,
+    CommentBox, 
+ } from 'expo-activity-feed';
+
+import HeaderView from '../components/HeaderView'
+import ContainerView from '../components/ContainerView'
+import ContentView from '../components/ContentView'
+import DividerView from '../components/DividerView'
+import APPBAR_HEIGHT from '../Utils'
+
+const FeedActivity = (props) => {
+    return (
+      <View>
+        <HeaderView {...props}/>
+        <ContainerView {...props}/>
+        <ContentView {...props}/>
+        <LikeButton {...props}
+          
+        />
+        <CommentBox {...props}
+          onSumbit={
+            console.log("Summited")
+          }
+          onReactionAdded={
+            console.log("Added")
+          }
+          verticalOffset={-200}
+        />
+        <DividerView />
+      </View>
+    );
+  }
+
+export default class ExplorerScreen extends React.Component {
+    static navigationOptions = {
+        title: 'Explorer',
+        headerStyle: {
+          backgroundColor: '#FFFFFF',
+        },
+        headerTintColor: '#333',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+        headerStyle: {height: APPBAR_HEIGHT}
+    };
+    render() {
+        const { navigate } = this.props.navigation;
+        return (
+            <FlatFeed
+                feedGroup="user"
+                userId="carlos"
+                Activity={(props) =>
+                    <FeedActivity {...props} />
+                }
+                notify
+            />
+        );
+    }
+}
