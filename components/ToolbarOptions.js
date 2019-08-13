@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TouchableHighlight, Button, StyleSheet, Image } from 'react-native';
+import ActivityController from '../controllers/ActivityController'
 
 import AlertIcon from '../images/icons/alert.png'
 import AddIcon from '../images/icons/add.png'
@@ -18,13 +19,17 @@ export default class ToolbarOptions extends React.Component{
                         source={AlertIcon}
                     />
                 </TouchableHighlight>
-                <TouchableHighlight activeOpacity={0.5} onPress={() => navigation.navigate('Notifications')} >
+                <TouchableHighlight activeOpacity={0.5} onPress={this.handleAdd(navigation)} >
                     <Image style={styles.iconStyle}
                         source={AddIcon}
                     />
                 </TouchableHighlight>
             </View>
         );
+    }
+
+    handleAdd = (navigation) => {
+        ActivityController.createActivityWithTypeAndNickname("user", "carlos");
     }
 }
 
