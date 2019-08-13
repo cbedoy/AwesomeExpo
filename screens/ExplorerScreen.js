@@ -1,17 +1,18 @@
 import React from 'react';
-import { View, TouchableHighlight, Button } from 'react-native';
+import { View, TouchableHighlight, Button, StyleSheet } from 'react-native';
 import {
   FlatFeed,
   LikeButton,
-  StatusUpdateForm,
-  ReactionIcon
+  ReactionIcon,
 } from 'expo-activity-feed';
 
 import HeaderView from '../components/HeaderView'
 import ContainerView from '../components/ContainerView'
 import ContentView from '../components/ContentView'
 import DividerView from '../components/DividerView'
+import ToolbarOptions from '../components/ToolbarOptions'
 import MessageIcon from '../images/icons/message.png'
+
 
 const FeedActivity = (props) => {
   return (
@@ -47,12 +48,7 @@ export default class ExplorerScreen extends React.Component {
       fontWeight: 'bold',
     },
     headerRight: (
-      <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Notifications"
-        color="#333"
-        backgroundColor="#FAFAFA"
-      />
+      <ToolbarOptions navigation={navigation}/>
     ),
     }
   };
