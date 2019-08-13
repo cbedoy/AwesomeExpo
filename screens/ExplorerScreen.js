@@ -4,25 +4,34 @@ import {
   FlatFeed,
   LikeButton,
   CommentBox,
+  ReactionIcon
 } from 'expo-activity-feed';
 
 import HeaderView from '../components/HeaderView'
 import ContainerView from '../components/ContainerView'
 import ContentView from '../components/ContentView'
 import DividerView from '../components/DividerView'
-import APPBAR_HEIGHT from '../Utils'
+import MessageIcon from '../images/icons/message.png'
 
 const FeedActivity = (props) => {
   return (
     <View>
-        <HeaderView {...props} />
-        <ContainerView {...props} />
-        <ContentView {...props} />
-        <LikeButton {...props}
+      <HeaderView {...props} />
+      <ContainerView {...props} />
+      <ContentView {...props} />
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <LikeButton reactionKind="heart" {...props} />
 
+        <ReactionIcon
+          icon={MessageIcon}
+          labelSingle="comment"
+          labelPlural="comments"
+          counts={props.activity.reaction_counts}
+          kind="comment"
         />
-        <DividerView />
       </View>
+      <DividerView />
+    </View>
   );
 }
 
@@ -44,7 +53,7 @@ export default class ExplorerScreen extends React.Component {
         feedGroup="user"
         userId="carlos"
         Activity={(props) =>
-          <TouchableHighlight onPress={() => this.onClick({...props})}>
+          <TouchableHighlight onPress={() => this.onClick({ ...props })}>
             <FeedActivity {...props} />
           </TouchableHighlight>
         }
@@ -58,7 +67,7 @@ export default class ExplorerScreen extends React.Component {
     const _activity = data.activity;
     const _feedGroup = data.feedGroup;
     const _userId = data.userId;
-    
+
     navigate('Detail', {
       activity: _activity,
       feedGroup: _feedGroup,

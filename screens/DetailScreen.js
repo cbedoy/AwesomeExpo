@@ -13,6 +13,7 @@ import ContainerView from '../components/ContainerView'
 import ContentView from '../components/ContentView'
 import DividerView from '../components/DividerView'
 import CommentView from '../components/CommentView'
+import LoadMoreView from '../components/LoadMoreView'
 import APPBAR_HEIGHT from '../Utils'
 
 const FeedDetailActivity = (props) => {
@@ -31,11 +32,9 @@ const FeedDetailActivity = (props) => {
       <CommentList 
         activityId={_activityId}
         infiniteScroll={true}
+        oldestToNewest={true}
         CommentItem={({ comment }) => (
-          <React.Fragment>
-            <CommentView comment={comment}
-            />
-          </React.Fragment>
+         <CommentView comment={comment}/>
         )}
       />
       <CommentBox 
