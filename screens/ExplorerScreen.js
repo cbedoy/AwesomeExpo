@@ -36,7 +36,6 @@ export default class ExplorerScreen extends React.Component {
     headerTitleStyle: {
       fontWeight: 'bold',
     },
-    headerStyle: { height: APPBAR_HEIGHT }
   };
   render() {
     const { navigate } = this.props.navigation;

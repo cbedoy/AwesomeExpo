@@ -5,15 +5,21 @@ import {
   SinglePost,
   LikeButton,
   CommentBox, 
+  CommentList,
 } from 'expo-activity-feed';
 
 import HeaderView from '../components/HeaderView'
 import ContainerView from '../components/ContainerView'
 import ContentView from '../components/ContentView'
 import DividerView from '../components/DividerView'
+import CommentView from '../components/CommentView'
 import APPBAR_HEIGHT from '../Utils'
 
 const FeedDetailActivity = (props) => {
+
+  let _activityId = props.activity.id;
+  let _activity = props.activity;
+
   return (
     <View>
       <HeaderView {...props}/>
@@ -22,14 +28,20 @@ const FeedDetailActivity = (props) => {
       <LikeButton {...props}
         
       />
-      <CommentBox {...props}
-        onSumbit={
-          console.log("Summited")
-        }
-        onReactionAdded={
-          console.log("Added")
-        }
-        verticalOffset={-200}
+      <CommentList 
+        activityId={_activityId}
+        infiniteScroll={true}
+        CommentItem={({ comment }) => (
+          <React.Fragment>
+            <CommentView comment={comment}
+            />
+          </React.Fragment>
+        )}
+      />
+      <CommentBox 
+        activity={_activity}
+        onAddReaction={props.onAddReaction}
+        styles={{ container: { height: 78 } }}
       />
       <DividerView />
     </View>
@@ -46,16 +58,12 @@ export default class DetailScreen extends React.Component {
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-      headerStyle: {height: APPBAR_HEIGHT}
     };
     render() {
       const { navigation } = this.props;
       const _activity = navigation.getParam('activity', undefined);
       const _feedGroup = navigation.getParam('feedGroup', undefined);
       const _userId = navigation.getParam('userId', undefined);
-      let containerView;
-
-      console.log(_activity)
 
       /*
       if(_activity != undefined && _feedGroup != undefined && _userId != undefined){

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
+import TimeAgo from 'react-native-timeago';
+import Utils from '../Utils'
 
 export default class HeaderView extends Component {
     render() {
@@ -8,12 +10,12 @@ export default class HeaderView extends Component {
         <View style={styles.root}>
           <View style={styles.headerStyle}>
             <Image
-              source={{uri: "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50"}}
+              source={{uri: Utils.avatarFromNickname(activity.actor)}}
               style={styles.leftImage}
             />
             <View style={styles.headerContent}>
               <Text style={styles.textStyle}>{activity.actor}</Text>
-              <Text style={styles.noteTextStyle}>{activity.time}</Text>
+              <Text style={styles.noteTextStyle}><TimeAgo time={activity.time}/></Text>
             </View>
           </View>
         </View>

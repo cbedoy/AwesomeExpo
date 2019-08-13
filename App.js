@@ -12,7 +12,6 @@ export default class App extends React.Component {
     let apiKey = "n6dqxby6gcfa";
     let appId = "49021";
     let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoibmF0aXZlIn0.9-QkLcUA5g1CdRKqpJXm3BJY8xdowSg0a5-QvRFkFNc";
-
     return (
       <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always' }}>
         <StreamApp
@@ -23,5 +22,5 @@ export default class App extends React.Component {
         </StreamApp>
       </SafeAreaView>
     );
-  }
+  } 
 }
