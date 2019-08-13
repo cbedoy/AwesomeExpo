@@ -1,9 +1,9 @@
 import React from 'react';
-import { View, TouchableHighlight } from 'react-native';
+import { View, TouchableHighlight, Button } from 'react-native';
 import {
   FlatFeed,
   LikeButton,
-  CommentBox,
+  StatusUpdateForm,
   ReactionIcon
 } from 'expo-activity-feed';
 
@@ -36,15 +36,25 @@ const FeedActivity = (props) => {
 }
 
 export default class ExplorerScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Explorer',
-    headerStyle: {
-      backgroundColor: '#FFFFFF',
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'Explorer',
+      headerStyle: {
+      backgroundColor: '#FAFAFA',
     },
     headerTintColor: '#333',
     headerTitleStyle: {
       fontWeight: 'bold',
     },
+    headerRight: (
+      <Button
+        onPress={() => navigation.navigate('Notifications')}
+        title="Notifications"
+        color="#333"
+        backgroundColor="#FAFAFA"
+      />
+    ),
+    }
   };
   render() {
     const { navigate } = this.props.navigation;
@@ -58,7 +68,7 @@ export default class ExplorerScreen extends React.Component {
           </TouchableHighlight>
         }
         notify
-      />
+        />
     );
   }
 
