@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, TouchableHighlight, Button } from 'react-native';
+import { View, TouchableHighlight, Button, Text } from 'react-native';
 import {
-    NotificationFeed,
-    Activity,
+    NotificationFeed
   } from 'expo-activity-feed';
 
+import NotificationsView from '../components/NotificationsView'
+  
 export default class NotificationsScreen extends React.Component {
     static navigationOptions = {
       title: 'Notifications',
@@ -19,13 +20,8 @@ export default class NotificationsScreen extends React.Component {
     render() {
       return (
         <NotificationFeed
-          userId="carlos"
-          Group={
-            <TouchableHighlight onPress={() => this.onClick({ ...props })}>
-              <Activity {...props} />
-            </TouchableHighlight>
-          }
-          notify
+          notify={true}
+          navigation={this.props.navigation}
           />
       );
     }

@@ -53,7 +53,6 @@ export default class ExplorerScreen extends React.Component {
     }
   };
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <FlatFeed
         feedGroup="user"
@@ -63,6 +62,7 @@ export default class ExplorerScreen extends React.Component {
             <FeedActivity {...props} />
           </TouchableHighlight>
         }
+        navigation={this.props.navigation}
         notify
         />
     );

@@ -29,7 +29,7 @@ export default class ToolbarOptions extends React.Component{
     }
 
     handleAdd = (navigation) => {
-        ActivityController.createActivityWithTypeAndNickname("user", "carlos");
+        //ActivityController.createActivityWithTypeAndNickname("user", "carlos");
     }
 }
 
