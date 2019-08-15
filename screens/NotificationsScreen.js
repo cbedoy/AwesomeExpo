@@ -19,13 +19,14 @@ export default class NotificationsScreen extends React.Component {
     };
     render() {
       return (
-        <NotificationFeed
-          notify={true}
-          navigation={this.props.navigation}
-          />
+        <View>
+          <Text>Notifications!</Text>
+        </View>
       );
     }
   
+
+
     onClick = (data) => {
       const { navigate } = this.props.navigation;
       const _activity = data.activity;
