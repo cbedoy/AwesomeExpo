@@ -29,6 +29,8 @@ export default class App extends React.Component {
       let apiKey = this.state.streamKey
       let appId = this.state.streamId;
       let token = this.state.userToken;
+
+      Global.unsubscribe(this)
       return (
         <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always' }}>
           <StreamApp

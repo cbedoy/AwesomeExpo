@@ -1,9 +1,4 @@
 let stream = require('getstream');
-let apiKey = 'n6dqxby6gcfa'
-let appId = '49021us'
-let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZSI6IioiLCJhY3Rpb24iOiIqIiwiZmVlZF9pZCI6IioifQ.p31LovjFsSEfSrAv-Np0diPENZ3c21Rfr3nxBFn_ukA"
-let client = stream.connect(apiKey, null, appId);
-
 
 const contents = [
     "https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2015/03/materialdesign-730x315.jpg",
@@ -26,7 +21,7 @@ function createActivityWithTypeAndNickname(type, nickname) {
 
     let activity = {
         'actor' : nickname,
-        'verb' : 'tweet',
+        'verb' : 'example',
         'object' : 'Created from react native',
         'tweet' : 'It was created from react native',
         'content' : contents[Math.floor(Math.random() * contents.length)]

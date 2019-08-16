@@ -14,6 +14,11 @@ subscribe = (observer) => {
         observers.push(observer);
 }
 
+unsubscribe = (observer) => {
+    if(observers.includes(observer))
+        observers.pop(observer);
+}
+
 putSession = (response) => {
     this.streamId = response.streamID
     this.streamKey = response.streamKey
@@ -29,4 +34,4 @@ putSession = (response) => {
     })
 }
 
-export default {hasSession, putSession, subscribe}
+export default {hasSession, putSession, subscribe, unsubscribe}
