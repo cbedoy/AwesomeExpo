@@ -14,6 +14,7 @@ import ContentView from '../components/ContentView'
 import DividerView from '../components/DividerView'
 import CommentView from '../components/CommentView'
 import LoadMoreView from '../components/LoadMoreView'
+import ResourceContentView from '../components/ResourceContentView'
 import APPBAR_HEIGHT from '../Utils'
 
 const FeedDetailActivity = (props) => {
@@ -21,10 +22,18 @@ const FeedDetailActivity = (props) => {
   let _activityId = props.activity.id;
   let _activity = props.activity;
 
+  let type = props.activity.verb;
+  let contentView
+  if (type === 'resource'){
+    contentView = <ResourceContentView {...props} />
+  }else{
+    contentView = <ContainerView {...props} />
+  }
+
   return (
     <View>
       <HeaderView {...props}/>
-      <ContainerView {...props}/>
+      {contentView}
       <ContentView {...props}/>
       <LikeButton {...props}
         
