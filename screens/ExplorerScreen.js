@@ -10,16 +10,26 @@ import HeaderView from '../components/HeaderView'
 import ContainerView from '../components/ContainerView'
 import ContentView from '../components/ContentView'
 import DividerView from '../components/DividerView'
+import ResourceContentView from '../components/ResourceContentView'
 import ToolbarOptions from '../components/ToolbarOptions'
 import MessageIcon from '../images/icons/message.png'
 import Global from '../core/Global'
 
 
 const FeedActivity = (props) => {
+
+  let type = props.activity.verb;
+  let contentView
+  if (type === 'resource'){
+    contentView = <ResourceContentView {...props} />
+  }else{
+    contentView = <ContainerView {...props} />
+  }
+
   return (
     <View>
       <HeaderView {...props} />
-      <ContainerView {...props} />
+      {contentView}
       <ContentView {...props} />
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <LikeButton reactionKind="heart" {...props} />
