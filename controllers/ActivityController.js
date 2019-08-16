@@ -2,6 +2,7 @@ import {React} from 'react'
 
 import Global from '../core/Global'
 import API from '../controllers/APIController'
+import EmbedlyController from '../controllers/EmbedlyController'
 let stream = require('getstream');
 
 const contents = [
@@ -23,13 +24,11 @@ const contents = [
 function createActivity(type) {
 
     let nickname = Global.getUser();
-    let token = Global.getUserToken();
     let streamKey = Global.getStreamKey();
     let streamId = Global.getStreamId();
 
     console.log("Create ACTIVITY")
     console.log('Nickname: '+nickname)
-    console.log('Token: '+token)
     console.log('Stream KEY: '+streamKey)
     console.log('Stream ID: '+streamId)
 
@@ -41,6 +40,7 @@ function createActivity(type) {
         console.log('Feed Token: '+feedToken)
 
         let feed = client.feed(type, nickname, feedToken);
+        
 
         let activity = {
             'actor' : nickname,
@@ -64,4 +64,52 @@ function createActivity(type) {
     })
 }
 
-export default {createActivity}
+function createRandomActivity(type) {
+    let nickname = Global.getUser();
+    let streamKey = Global.getStreamKey();
+    let streamId = Global.getStreamId();
+
+    let client = stream.connect(streamKey, null, streamId);
+
+    API.getFeedToken(type, nickname).then((response) => {
+        let feedToken = response.feedToken;
+
+        let feed = client.feed(type, nickname, feedToken);
+
+        EmbedlyController.getMetadataFromRandomLink().then((response) => {
+            delete response['authors']
+            delete response['cache_age']
+            delete response['entities']
+            delete response['favicon_colors']
+            delete response['keywords']
+            delete response['language']
+            delete response['lead']
+            delete response['media']
+            delete response['offset']
+            delete response['related']
+            delete response['app_links']
+            
+            let activity = {
+                'actor' : nickname,
+                'verb' : 'resource',
+                'object' : 'Created from react native',
+                'metadataType' : 'link',
+                'metadata' : response,
+            };
+
+            console.log(activity)
+
+            feed.addActivity(activity)
+                .then(function(data) { 
+                    console.log("SUCCESS")
+                    console.log(data)
+                })
+                .catch(function(reason) { 
+                    console.log(reason)
+                }); 
+        })
+    })
+}
+
+
+export default {createActivity, createRandomActivity}

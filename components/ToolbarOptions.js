@@ -32,7 +32,7 @@ export default class ToolbarOptions extends React.Component{
     handleAdd = () => {
         console.log('handleAdd')
 
-        ActivityController.createActivity('user');
+        ActivityController.createRandomActivity('user')
     }
 }
 
