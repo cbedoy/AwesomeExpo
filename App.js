@@ -16,15 +16,19 @@ export default class App extends React.Component {
     super(props);
 
     this.state = {
-      withSession: false,
+      streamId: '',
+      streamKey: '',
+      userToken: '',
     }
+
+    Global.subscribe(this)
   }
 
   render() {
-    if(this.state.withSession) {
-      let apiKey = "n6dqxby6gcfa";
-      let appId = "49021";
-      let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoibmF0aXZlIn0.9-QkLcUA5g1CdRKqpJXm3BJY8xdowSg0a5-QvRFkFNc";
+    if(this.state.session) {
+      let apiKey = this.state.streamKey
+      let appId = this.state.streamId;
+      let token = this.state.userToken;
       return (
         <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always' }}>
           <StreamApp

@@ -15,7 +15,6 @@ async function getUserToken(nickname) {
             }
         );
         let responseJson = await response.json();
-        console.log(responseJson);
         return responseJson;
     }catch(error){
         console.error(error);

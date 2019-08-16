@@ -46,13 +46,7 @@ export default class LoginScreen extends React.Component {
       console.log(nickname)
       if (nickname.length !== 0){
         APIController.getUserToken(nickname).then((response) => {
-          const { navigate } = this.props.navigation;
-
-          Global.state.streamId = response.streamID
-          Global.state.streamKey = response.streamKey
-          Global.state.userToken = response.userToken
-
-        
+          Global.putSession(response);
         });
       }
     }
