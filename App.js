@@ -8,6 +8,7 @@ import {
 import StreamContainer from './containers/StreamContainer'
 import LoginContainer from './containers/LoginContainer'
 import Global from './core/Global';
+import { FlatFeed } from 'react-native-activity-feed-core';
 
 export default class App extends React.Component {
 

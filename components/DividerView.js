@@ -12,10 +12,9 @@ export default class DividerView extends React.Component{
 const styles = StyleSheet.create({
     divider: {
       flex: 1,
-      backgroundColor: '#f0f0f0',
+      backgroundColor: '#F0F0F0',
       alignItems: 'center',
-      marginLeft: 16,
       justifyContent: 'center',
-      minHeight: 1,
+      minHeight: 32,
     },
   });

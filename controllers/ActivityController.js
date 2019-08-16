@@ -40,6 +40,8 @@ function createActivity(type) {
         console.log('Feed Token: '+feedToken)
 
         let feed = client.feed(type, nickname, feedToken);
+
+    
         
 
         let activity = {

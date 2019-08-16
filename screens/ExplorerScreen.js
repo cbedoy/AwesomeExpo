@@ -12,7 +12,7 @@ import ContentView from '../components/ContentView'
 import DividerView from '../components/DividerView'
 import ResourceContentView from '../components/ResourceContentView'
 import ToolbarOptions from '../components/ToolbarOptions'
-import MessageIcon from '../images/icons/message.png'
+import ReactionsView from '../components/ReactionsView'
 import Global from '../core/Global'
 
 
@@ -30,18 +30,7 @@ const FeedActivity = (props) => {
     <View>
       <HeaderView {...props} />
       {contentView}
-      <ContentView {...props} />
-      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <LikeButton reactionKind="heart" {...props} />
-
-        <ReactionIcon
-          icon={MessageIcon}
-          labelSingle="comment"
-          labelPlural="comments"
-          counts={props.activity.reaction_counts}
-          kind="comment"
-        />
-      </View>
+      <ReactionsView {...props} />
       <DividerView />
     </View>
   );
