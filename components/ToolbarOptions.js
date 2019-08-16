@@ -4,6 +4,7 @@ import ActivityController from '../controllers/ActivityController'
 
 import AlertIcon from '../images/icons/alert.png'
 import AddIcon from '../images/icons/add.png'
+import Global from '../core/Global'
 
 export default class ToolbarOptions extends React.Component{
     constructor(props){
@@ -19,7 +20,7 @@ export default class ToolbarOptions extends React.Component{
                         source={AlertIcon}
                     />
                 </TouchableHighlight>
-                <TouchableHighlight activeOpacity={0.5} onPress={this.handleAdd(navigation)} >
+                <TouchableHighlight activeOpacity={0.5} onPress={() => this.handleAdd()} >
                     <Image style={styles.iconStyle}
                         source={AddIcon}
                     />
@@ -28,8 +29,10 @@ export default class ToolbarOptions extends React.Component{
         );
     }
 
-    handleAdd = (navigation) => {
-        //ActivityController.createActivityWithTypeAndNickname("user", "carlos");
+    handleAdd = () => {
+        console.log('handleAdd')
+
+        ActivityController.createActivity('user');
     }
 }
 

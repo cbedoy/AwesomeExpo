@@ -50,9 +50,9 @@ export default class LoginScreen extends React.Component {
 
     login = () => {
       let nickname = this.state.text;
-      console.log(nickname)
       if (nickname.length !== 0){
         APIController.getUserToken(nickname).then((response) => {
+          Global.setUser(nickname);
           Global.putSession(response);
         });
       }

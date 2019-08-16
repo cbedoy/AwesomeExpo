@@ -12,6 +12,7 @@ import ContentView from '../components/ContentView'
 import DividerView from '../components/DividerView'
 import ToolbarOptions from '../components/ToolbarOptions'
 import MessageIcon from '../images/icons/message.png'
+import Global from '../core/Global'
 
 
 const FeedActivity = (props) => {

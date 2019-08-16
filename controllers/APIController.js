@@ -21,4 +21,23 @@ async function getUserToken(nickname) {
     }
 }
 
-export default {getUserToken}
+async function getFeedToken(feedSlug, nickname){
+    let URL = API + '/stream/feedtoken/'+feedSlug+'/'+nickname;
+    try{
+        let response = await fetch(URL,
+            {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+        let responseJson = await response.json();
+        return responseJson;
+    }catch(error){
+        console.error(error);
+    }
+}
+
+export default {getUserToken, getFeedToken}

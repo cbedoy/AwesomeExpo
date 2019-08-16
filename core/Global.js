@@ -2,6 +2,7 @@
 let userToken = ''
 let streamId = ''
 let streamKey = ''
+let user = ''
 
 let observers = [];
 
@@ -34,4 +35,25 @@ putSession = (response) => {
     })
 }
 
-export default {hasSession, putSession, subscribe, unsubscribe}
+getStreamId = () => {
+    return this.streamId;
+}
+
+getStreamKey = () => {
+    return this.streamKey;
+}
+
+getUserToken = () => {
+    return this.userToken;
+}
+
+setUser = (nickname) => {
+    this.user = nickname;
+}
+
+getUser = () => {
+    return this.user;
+}
+
+export default {hasSession, putSession, subscribe, unsubscribe, 
+    setUser, getStreamId, getStreamKey, getUserToken, getUser}

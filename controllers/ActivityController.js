@@ -1,3 +1,7 @@
+import {React} from 'react'
+
+import Global from '../core/Global'
+import API from '../controllers/APIController'
 let stream = require('getstream');
 
 const contents = [
@@ -16,27 +20,48 @@ const contents = [
     "https://fruitfulcode.com/wp-content/uploads/2016/08/material-design-main.jpg"
 ];
 
-function createActivityWithTypeAndNickname(type, nickname) {
-    let feed = client.feed(type, nickname, token);
+function createActivity(type) {
 
-    let activity = {
-        'actor' : nickname,
-        'verb' : 'example',
-        'object' : 'Created from react native',
-        'tweet' : 'It was created from react native',
-        'content' : contents[Math.floor(Math.random() * contents.length)]
-    };
+    let nickname = Global.getUser();
+    let token = Global.getUserToken();
+    let streamKey = Global.getStreamKey();
+    let streamId = Global.getStreamId();
 
-    feed.addActivity(activity)
-        .then(function(data) { 
-            /* on success */ 
-            console.log("SUCCESS")
-            console.log(data)
-        })
-        .catch(function(reason) { 
-            /* on failure, reason.error contains an explanation */ 
-            console.log(reason)
-        });
+    console.log("Create ACTIVITY")
+    console.log('Nickname: '+nickname)
+    console.log('Token: '+token)
+    console.log('Stream KEY: '+streamKey)
+    console.log('Stream ID: '+streamId)
+
+    let client = stream.connect(streamKey, null, streamId);
+
+    API.getFeedToken(type, nickname).then((response) => {
+        let feedToken = response.feedToken;
+
+        console.log('Feed Token: '+feedToken)
+
+        let feed = client.feed(type, nickname, feedToken);
+
+        let activity = {
+            'actor' : nickname,
+            'verb' : 'demo',
+            'object' : 'Created from react native',
+            'tweet' : 'It was created from react native',
+            'content' : contents[Math.floor(Math.random() * contents.length)]
+        };
+
+
+        console.log(activity)
+
+        feed.addActivity(activity)
+            .then(function(data) { 
+                console.log("SUCCESS")
+                console.log(data)
+            })
+            .catch(function(reason) { 
+                console.log(reason)
+            }); 
+    })
 }
 
-export default {createActivityWithTypeAndNickname}
+export default {createActivity}
