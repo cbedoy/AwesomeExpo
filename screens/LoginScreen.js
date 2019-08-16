@@ -9,11 +9,11 @@ export default class LoginScreen extends React.Component {
     static navigationOptions = {
       title: 'Login',
       headerStyle: {
-        backgroundColor: Colors.primaryColorDark,
+        backgroundColor: '#FAFAFA',
         height: 44, 
+        marginTop: -44,
       },
-      headerTintColor: Colors.whiteColor,
-      borderBottomColor: Colors.primaryColorDark,
+      headerTintColor: '#333',
       headerTitleStyle: {
         fontWeight: 'bold',
       },
@@ -36,7 +36,7 @@ export default class LoginScreen extends React.Component {
             autoCapitalize = 'none'
           />
           <TouchableHighlight 
-            style={{alignItems: 'center', flex: 1, flexDirection: 'row'}}
+            style={styles.buttonContainer}
             onPress={() => this.login()}>
             <Text style={styles.action}>Get Started</Text>
           </TouchableHighlight>
@@ -64,6 +64,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.whiteColor,
     flex: 1,
   },
+  buttonContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
   input: {
     height: 40, 
     borderColor: '#f0f0f0', 
@@ -76,20 +81,16 @@ const styles = StyleSheet.create({
     fontSize: 28,
   },
   action: {
-    borderColor: '#f0f0f0', 
-    flex: 1,
-    backgroundColor: Colors.primaryColor,
-    borderWidth: 1, 
-    borderRadius: 8,
-    padding: 8,
-    color: Colors.whiteColor,
+    padding: 15,
+    borderRadius:20,
+    backgroundColor: Colors.accentColor,
+    color: '#FFF',
+    marginTop: 64,
     fontSize: 28,
-    alignItems: 'center',
-    marginLeft: 16,
-    marginRight: 16, 
+    padding: 8, 
   },
   terms : {
-    color:"#841584",
+    color: Colors.accentColor,
     fontSize: 16,
     alignItems: 'center',
     marginTop: 64,

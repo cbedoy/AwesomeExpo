@@ -7,6 +7,8 @@ export default class ContentProviderScreen extends React.Component {
       title: 'Content Provider',
       headerStyle: {
         backgroundColor: '#FAFAFA',
+        height: 44, 
+        marginTop: -44,
       },
       headerTintColor: '#333',
       headerTitleStyle: {

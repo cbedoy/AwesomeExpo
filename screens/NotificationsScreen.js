@@ -11,6 +11,8 @@ export default class NotificationsScreen extends React.Component {
       title: 'Notifications',
       headerStyle: {
         backgroundColor: '#FAFAFA',
+        height: 44, 
+        marginTop: -44,
       },
       headerTintColor: '#333',
       headerTitleStyle: {

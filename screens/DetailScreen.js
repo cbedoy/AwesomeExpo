@@ -61,6 +61,8 @@ export default class DetailScreen extends React.Component {
       title: 'Detail',
       headerStyle: {
         backgroundColor: '#FFFFFF',
+        height: 44, 
+        marginTop: -44,
       },
       headerTintColor: '#333',
       headerTitleStyle: {

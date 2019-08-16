@@ -52,7 +52,9 @@ export default class ExplorerScreen extends React.Component {
     return {
       title: 'Explorer',
       headerStyle: {
-      backgroundColor: '#FAFAFA',
+        backgroundColor: '#FAFAFA',
+        height: 44, 
+        marginTop: -44,
     },
     headerTintColor: '#333',
     headerTitleStyle: {
