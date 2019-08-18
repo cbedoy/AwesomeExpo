@@ -10,7 +10,7 @@ import HeaderView from '../components/HeaderView'
 import ContainerView from '../components/ContainerView'
 import ContentView from '../components/ContentView'
 import DividerView from '../components/DividerView'
-import ResourceContentView from '../components/ResourceContentView'
+import LinkContentView from '../components/LinkContentView'
 import ToolbarOptions from '../components/ToolbarOptions'
 import ReactionsView from '../components/ReactionsView'
 import Global from '../core/Global'
@@ -21,7 +21,7 @@ const FeedActivity = (props) => {
   let type = props.activity.verb;
   let contentView
   if (type === 'resource'){
-    contentView = <ResourceContentView {...props} />
+    contentView = <LinkContentView {...props} />
   }else{
     contentView = <ContainerView {...props} />
   }

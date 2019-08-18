@@ -2,22 +2,30 @@ import React, { Component } from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
 
 
-export default class ResourceContentView extends Component {
+export default class LinkContentView extends Component {
     render() {
         let metadata = this.props.activity.metadata;
 
         let images = metadata.images;
         let imageURL = 'https://imgplaceholder.com/420x320/ff7f7f/333333/fa-image'
+        let type = metadata.type;
+        let description = metadata.description;
+        let title = metadata.title;
+        let subtile = metadata.provider_url;
         if (images.length > 0){
             let image = images[0];
             if (image.url){
                 imageURL = image.url;
             }
+        }else if(images.length === 0 && type === 'image'){
+            imageURL = metadata.url
         }
 
-        let description = metadata.description;
-        let title = metadata.title;
-        let subtile = metadata.provider_url;
+        if (title === 'null' || title == null)
+            title = metadata.provider_name;
+
+        if (subtile === 'null' || subtile == null)
+            subtile = metadata.provider_url;
 
         return (
             <View style={[styles.root]}>
