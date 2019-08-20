@@ -8,7 +8,6 @@ import {
 import StreamContainer from './containers/StreamContainer'
 import LoginContainer from './containers/LoginContainer'
 import Global from './core/Global';
-import ExplorerHeaderView from './components/ExplorerHeaderView'
 
 export default class App extends React.Component {
 

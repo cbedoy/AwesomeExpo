@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
 import TimeAgo from 'react-native-timeago';
 import Utils from '../Utils'
+import Global from '../core/Global'
 
 export default class ExplorerHeaderView extends Component {
     render() {
@@ -10,11 +11,11 @@ export default class ExplorerHeaderView extends Component {
             <View style={styles.root}>
                 <View style={styles.headerStyle}>
                     <Image
-                        source={{ uri: Utils.avatarFromNickname('carlos') }}
+                        source={{ uri: Utils.avatarFromNickname(Global.getUser()) }}
                         style={styles.avatarImage}
                     />
                     <View style={styles.headerContent}>
-                        <Text style={styles.nicknameStyle} numberOfLines={1}>Carlos Bedoy</Text>
+                        <Text style={styles.nicknameStyle} numberOfLines={1}>{activity.actor}</Text>
                         <View style={{ flexDirection: 'row' }}>
                             <Image
                                 source={this.favIconFromActivity(activity)}

@@ -25,7 +25,7 @@ async function getMetadataFromLink(link) {
 }
 
 async function getMetadataFromRandomLink() {
-    let urls = URLProviders.videosURL
+    let urls = URLProviders.imagesURL
     let targetUrl = urls[Math.floor(Math.random() * urls.length)]
 
     let URL = API + '/1/extract?url='+targetUrl+'&key='+key;
