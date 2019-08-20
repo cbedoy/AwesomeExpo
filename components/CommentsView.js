@@ -8,6 +8,8 @@ import {
 
 import DividerView from '../components/DividerView'
 import CommentView from '../components/CommentView'
+import Global from '../core/Global'
+import Utils from '../Utils'
 
 export default class CommentsView extends React.Component{
     render(){
@@ -24,9 +26,13 @@ export default class CommentsView extends React.Component{
                     )}
                 />
                 <CommentBox 
+                    avatarProps={{
+                        source:
+                            Utils.avatarFromNickname(Global.getUser())
+                    }}
                     activity={activity}
                     onAddReaction={this.props.onAddReaction}
-                    styles={{ container: { height: 128 } }}
+                    styles={{ container: { height: 100 } }}
                 />
                 <DividerView />
             </View>
