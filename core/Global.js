@@ -1,9 +1,8 @@
+import session from './Session'
 
 let userToken = ''
 let streamId = ''
 let streamKey = ''
-let user = ''
-
 let observers = [];
 
 hasSession = () => {
@@ -47,13 +46,42 @@ getUserToken = () => {
     return this.userToken;
 }
 
-setUser = (nickname) => {
-    this.user = nickname;
+setUserId = (id, college) => {
+    session.id = id;
+    session.college = college;
+
+    console.log(session)
+}
+
+setData = (data) => {
+    console.log('setData')
+    session.firstName = data.firstName;
+    session.lastName = data.lastName;
+    session.avatar = data.avatar;
+    session.nickname = data.nickname;
+
+    console.log(session)
+}
+
+setChannels = (channels) => {
+    session.channels = channels;
+    console.log(session)
 }
 
 getUser = () => {
-    return this.user;
+    return session;
 }
 
-export default {hasSession, putSession, subscribe, unsubscribe, 
-    setUser, getStreamId, getStreamKey, getUserToken, getUser}
+export default {
+    hasSession, 
+    putSession, 
+    subscribe, 
+    unsubscribe, 
+    setUserId, 
+    setData, 
+    setChannels,  
+    getStreamId, 
+    getStreamKey, 
+    getUserToken, 
+    getUser
+}

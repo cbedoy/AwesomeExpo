@@ -21,62 +21,18 @@ const contents = [
     "https://fruitfulcode.com/wp-content/uploads/2016/08/material-design-main.jpg"
 ];
 
-function createActivity(type) {
-
-    let nickname = Global.getUser();
-    let streamKey = Global.getStreamKey();
-    let streamId = Global.getStreamId();
-
-    console.log("Create ACTIVITY")
-    console.log('Nickname: '+nickname)
-    console.log('Stream KEY: '+streamKey)
-    console.log('Stream ID: '+streamId)
-
-    let client = stream.connect(streamKey, null, streamId);
-
-    API.getFeedToken(type, nickname).then((response) => {
-        let feedToken = response.feedToken;
-
-        console.log('Feed Token: '+feedToken)
-
-        let feed = client.feed(type, nickname, feedToken);
-
-    
-        
-
-        let activity = {
-            'actor' : nickname,
-            'verb' : 'demo',
-            'object' : 'Created from react native',
-            'tweet' : 'It was created from react native',
-            'content' : contents[Math.floor(Math.random() * contents.length)]
-        };
-
-
-        console.log(activity)
-
-        feed.addActivity(activity)
-            .then(function(data) { 
-                console.log("SUCCESS")
-                console.log(data)
-            })
-            .catch(function(reason) { 
-                console.log(reason)
-            }); 
-    })
-}
 
 function createRandomActivity(type) {
-    let nickname = Global.getUser();
+    let userId = Global.getUser().id;
     let streamKey = Global.getStreamKey();
     let streamId = Global.getStreamId();
 
     let client = stream.connect(streamKey, null, streamId);
 
-    API.getFeedToken(type, nickname).then((response) => {
+    API.getFeedToken(type, userId).then((response) => {
         let feedToken = response.feedToken;
 
-        let feed = client.feed(type, nickname, feedToken);
+        let feed = client.feed(type, userId, feedToken);
 
         EmbedlyController.getMetadataFromRandomLink().then((response) => {
             delete response['authors']
@@ -92,7 +48,7 @@ function createRandomActivity(type) {
             delete response['app_links']
             
             let activity = {
-                'actor' : nickname,
+                'actor' : userId,
                 'verb' : 'resource',
                 'object' : 'Created from react native',
                 'metadataType' : 'link',
@@ -114,4 +70,4 @@ function createRandomActivity(type) {
 }
 
 
-export default {createActivity, createRandomActivity}
+export default {createRandomActivity}

@@ -27,8 +27,7 @@ export default class CommentsView extends React.Component{
                 />
                 <CommentBox 
                     avatarProps={{
-                        source:
-                            Utils.avatarFromNickname(Global.getUser())
+                        source: Global.getUser().avatar,
                     }}
                     activity={activity}
                     onAddReaction={this.props.onAddReaction}

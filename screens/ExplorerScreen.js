@@ -59,7 +59,7 @@ export default class ExplorerScreen extends React.Component {
     return (
       <FlatFeed
         feedGroup="user"
-        userId={Global.getUser()}
+        userId={Global.getUser().id}
         Activity={(props) =>
           <TouchableHighlight onPress={() => this.onClick({ ...props })}>
             <FeedActivity {...props} />

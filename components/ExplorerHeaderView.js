@@ -7,15 +7,16 @@ import Global from '../core/Global'
 export default class ExplorerHeaderView extends Component {
     render() {
         let activity = this.props.activity; 
+        console.log(Global.getUser())
         return (
             <View style={styles.root}>
                 <View style={styles.headerStyle}>
                     <Image
-                        source={{ uri: Utils.avatarFromNickname(Global.getUser()) }}
+                        source={{ uri: Global.getUser().avatar }}
                         style={styles.avatarImage}
                     />
                     <View style={styles.headerContent}>
-                        <Text style={styles.nicknameStyle} numberOfLines={1}>{activity.actor}</Text>
+                        <Text style={styles.nicknameStyle} numberOfLines={1}>{Global.getUser().nickname}</Text>
                         <View style={{ flexDirection: 'row' }}>
                             <Image
                                 source={this.favIconFromActivity(activity)}
