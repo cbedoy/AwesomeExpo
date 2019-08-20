@@ -6,7 +6,7 @@ import {
   ReactionIcon,
 } from 'expo-activity-feed';
 
-import HeaderView from '../components/HeaderView'
+import ExplorerHeaderView from '../components/ExplorerHeaderView'
 import ContainerView from '../components/ContainerView'
 import ContentView from '../components/ContentView'
 import DividerView from '../components/DividerView'
@@ -28,7 +28,8 @@ const FeedActivity = (props) => {
 
   return (
     <View>
-      <HeaderView {...props} />
+      <ExplorerHeaderView {...props} />
+      <ContentView {...props}/>
       {contentView}
       <ReactionsView {...props} />
       <DividerView />

@@ -8,10 +8,9 @@ import {
 import StreamContainer from './containers/StreamContainer'
 import LoginContainer from './containers/LoginContainer'
 import Global from './core/Global';
-import { FlatFeed } from 'react-native-activity-feed-core';
+import ExplorerHeaderView from './components/ExplorerHeaderView'
 
 export default class App extends React.Component {
-
 
   constructor(props){
     super(props);
@@ -50,4 +49,15 @@ export default class App extends React.Component {
       );
     }
   } 
+
+  /*
+  render(){
+    return(
+      <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always' }}>
+        <ExplorerHeaderView />
+      </SafeAreaView>
+    );
+  }
+  */
+  
 }

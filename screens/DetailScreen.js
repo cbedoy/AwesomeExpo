@@ -1,26 +1,18 @@
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { 
   SinglePost,
-  LikeButton,
-  CommentBox, 
-  CommentList,
 } from 'expo-activity-feed';
 
-import HeaderView from '../components/HeaderView'
+import ExplorerHeaderView from '../components/ExplorerHeaderView'
 import ContainerView from '../components/ContainerView'
 import ContentView from '../components/ContentView'
-import DividerView from '../components/DividerView'
-import CommentView from '../components/CommentView'
 import LinkContentView from '../components/LinkContentView'
-import APPBAR_HEIGHT from '../Utils'
+import ReactionsView from '../components/ReactionsView'
+import CommentsView from '../components/CommentsView'
 
 const FeedDetailActivity = (props) => {
-
-  let _activityId = props.activity.id;
-  let _activity = props.activity;
-
   let type = props.activity.verb;
   let contentView
   if (type === 'resource'){
@@ -31,26 +23,11 @@ const FeedDetailActivity = (props) => {
 
   return (
     <View>
-      <HeaderView {...props}/>
-      {contentView}
+      <ExplorerHeaderView {...props}/>
       <ContentView {...props}/>
-      <LikeButton {...props}
-        
-      />
-      <CommentList 
-        activityId={_activityId}
-        infiniteScroll={true}
-        oldestToNewest={true}
-        CommentItem={({ comment }) => (
-         <CommentView comment={comment}/>
-        )}
-      />
-      <CommentBox 
-        activity={_activity}
-        onAddReaction={props.onAddReaction}
-        styles={{ container: { height: 78 } }}
-      />
-      <DividerView />
+      {contentView}
+      <ReactionsView {...props} />
+      <CommentsView {...props}/>
     </View>
   );
 }

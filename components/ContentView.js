@@ -3,11 +3,11 @@ import { StyleSheet, View, Text } from "react-native";
 
 export default class ContentView extends Component {
     render() {
-      let tweet = this.props.activity.tweet; 
+      let object = this.props.activity.object; 
       return (
         <View style={styles.root}>
           <Text style={styles.bodyText}>
-            {tweet}
+            {object}
           </Text>
         </View>
       );
@@ -18,11 +18,13 @@ export default class ContentView extends Component {
     root: {
       flex: 1,
       backgroundColor: "rgb(255,255,255)",
-      padding: 16
+      paddingRight: 16,
+      paddingLeft: 16,
+      paddingBottom: 8,
     },
     bodyText: {
       color: "#424242",
-      fontSize: 14,
-      lineHeight: 20
+      fontSize: 16,
+      lineHeight: 16
     }
   });

@@ -4,7 +4,6 @@ import MessageIcon from '../images/icons/message.png'
 import LikeIcon from '../images/icons/like.png'
 import DisLikeIcon from '../images/icons/dislike.png'
 import {
-    LikeButton,
     ReactionIcon,
   } from 'expo-activity-feed';
 
