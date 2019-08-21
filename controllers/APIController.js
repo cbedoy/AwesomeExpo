@@ -146,6 +146,42 @@ async function getChannels(identifier){
 
         UserController.setChannels(channels);
 
+        await getCollege()
+
+    }catch(error){
+        console.error(error);
+    }
+}
+
+async function getCollege(){
+    let college = UserController.getUser().college;
+    let userId = UserController.getUser().id;
+    let URL = API + '/college/'+college+'/directory?user_id='+userId
+    try{
+        let response = await fetch(URL,
+            {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+        let users = [];
+        let responseJson = await response.json();
+        responseJson.forEach((user) => {
+            if(user.name !== null || user.avatar !== null){
+                let userData = {
+                    nickname: user.name,
+                    avatar: user.avatar,
+                    id: user.id,
+                }
+                users.push(userData);
+            }
+        });
+
+        UserController.setCollege(users);
+
         return {
             status: true,
         }

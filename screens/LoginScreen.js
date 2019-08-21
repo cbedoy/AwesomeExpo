@@ -73,7 +73,7 @@ export default class LoginScreen extends React.Component {
   }
 
   login = () => {
-    let value = this.state.text;
+    let value = this.state.text; 
     if (value.length !== 0) {
       let email = value + '@dagm8.com'
       APIController.signin(email).then((response) => {
@@ -83,7 +83,6 @@ export default class LoginScreen extends React.Component {
       });
     }
   }
-
   test = () => {
     this.RBSheet.open()
   }
