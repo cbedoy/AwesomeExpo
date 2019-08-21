@@ -1,6 +1,6 @@
 import React from 'react';
-import { Image, View, StyleSheet, Text } from 'react-native';
-import {FollowButton} from 'expo-activity-feed'
+import { Image, View, StyleSheet, Text, Button } from 'react-native';
+import FollowController from '../controllers/FollowController'
 
 export default class UserCell extends React.Component{
     constructor(props){
@@ -12,7 +12,10 @@ export default class UserCell extends React.Component{
             <View style={this.selectedStyle()}>
                 <Image style={styles.avatar} source={{uri: this.props.source.avatar}}/>
                 <Text style={styles.title}>{this.props.source.nickname}</Text>
-                <FollowButton styles={{ button: { width: 80 }, flexDirection: 'row-reverse', flex: 1, }} />
+                <Button  
+                    onPress={() => this.handleFollow()}
+                    title="Follow"
+                />
             </View>
         );
     }
@@ -23,6 +26,10 @@ export default class UserCell extends React.Component{
             flexDirection: 'row',
             backgroundColor: (this.props.source.selected) ? '#F0F0F0' : '#FFFFFF',
         }
+    }
+
+    handleFollow = () => {
+        FollowController.follow(this.props.source.id)
     }
 }
 

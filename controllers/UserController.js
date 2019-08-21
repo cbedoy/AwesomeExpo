@@ -4,8 +4,6 @@ import college from '../core/College'
 setUserId = (id, college) => {
     session.id = id;
     session.college = college;
-
-    console.log(session)
 }
 
 setData = (data) => {
@@ -14,13 +12,10 @@ setData = (data) => {
     session.lastName = data.lastName;
     session.avatar = data.avatar;
     session.nickname = data.nickname;
-
-    console.log(session)
 }
 
 setChannels = (channels) => {
     session.channels = channels;
-    console.log(session)
 }
 
 getUser = () => {
@@ -28,22 +23,41 @@ getUser = () => {
 }
 
 setCollege = (users) => {
-    let pekUsers = []
+    //let peekUsers = []
+    //let peekDictionary = {}
     users.sort((userOne, userTwo) => 
         userOne.nickname[0] > userTwo.nickname[0]
     );
+    //users.forEach(element => {
+    //    let nickname = element.nickname.toLowerCase();
+    //    if(nickname.includes('kar') || nickname.includes('nes') || nickname.includes('car') || nickname.includes('and')){
+    //        peekUsers.push(element)
+    //
+    //        peekDictionary[element.id] = element;
+    //    }
+    //});
+
+    let usersMap = {};
     users.forEach(element => {
-        let nickname = element.nickname.toLowerCase();
-        if(nickname.includes('kar') || nickname.includes('nes') || nickname.includes('car')){
-            pekUsers.push(element)
-        }
+        usersMap[element.id] = element;
     });
 
-    college.users = pekUsers;
+    college.users = users;
+    college.usersMap = usersMap;
 }
 
 getCollege = () => {
     return college.users;
+}
+
+getUserFromId = (userId) => {
+    console.log(userId)
+
+    if(college.usersMap[userId]){
+        return college.usersMap[userId];
+    }else{
+        return session
+    }
 }
 
 shuffle = (a) => {
@@ -62,4 +76,5 @@ export default {
     getUser,
     setCollege,
     getCollege,
+    getUserFromId
 }

@@ -7,15 +7,16 @@ import UserController from '../controllers/UserController'
 export default class ExplorerHeaderView extends Component {
     render() {
         let activity = this.props.activity; 
+        let userInfo = UserController.getUserFromId(activity.actor);
         return (
             <View style={styles.root}>
                 <View style={styles.headerStyle}>
                     <Image
-                        source={{ uri: UserController.getUser().avatar }}
+                        source={{ uri: userInfo.avatar }}
                         style={styles.avatarImage}
                     />
                     <View style={styles.headerContent}>
-                        <Text style={styles.nicknameStyle} numberOfLines={1}>{UserController.getUser().nickname}</Text>
+                        <Text style={styles.nicknameStyle} numberOfLines={1}>{userInfo.nickname}</Text>
                         <View style={{ flexDirection: 'row' }}>
                             <Image
                                 source={this.favIconFromActivity(activity)}

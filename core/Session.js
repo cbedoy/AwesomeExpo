@@ -4,6 +4,7 @@ let session = {
     nickname: '',
     firstName: '',
     lastName: '',
+    avatar: '',
     channels: []
 };
 

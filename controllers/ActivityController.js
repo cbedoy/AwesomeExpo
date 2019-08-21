@@ -1,5 +1,3 @@
-import {React} from 'react'
-
 import Global from '../core/Global'
 import UserController from '../controllers/UserController'
 import API from '../controllers/APIController'
