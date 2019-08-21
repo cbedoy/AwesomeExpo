@@ -1,4 +1,3 @@
-import React from 'react';
 import Global from '../core/Global'
 
 const API = "http://ec2-52-8-197-192.us-west-1.compute.amazonaws.com:10010/api";
@@ -159,4 +158,23 @@ async function getChannels(identifier){
     }
 }
 
-export default {getUserToken, getFeedToken, signin}
+async function getChannelsData(identifier){
+    let URL = API + '/user/'+identifier+'/conversations'
+    try{
+        let response = await fetch(URL,
+            {
+                method: 'GET',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                },
+            }
+        );
+        let responseJson = await response.json();
+        return responseJson;
+    }catch(error){
+        console.error(error);
+    }
+}
+
+export default {getUserToken, getFeedToken, signin, getChannelsData}

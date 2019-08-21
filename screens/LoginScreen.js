@@ -3,6 +3,8 @@ import { View, TouchableHighlight, Dimensions, Text, TextInput, StyleSheet } fro
 import APIController from '../controllers/APIController';
 import Global from '../core/Global'
 import Colors from '../core/Colors'
+import RBSheet from "react-native-raw-bottom-sheet";
+import ChannelsBottomSheet from '../components/ChannelsBottomSheet'
 
 export default class LoginScreen extends React.Component {
   static navigationOptions = {
@@ -41,9 +43,31 @@ export default class LoginScreen extends React.Component {
           <Text style={styles.action}>Get Started</Text>
         </TouchableHighlight>
 
+        <TouchableHighlight
+          style={styles.buttonContainer}
+          onPress={() => this.test()}>
+          <Text style={styles.action}>Testing</Text>
+        </TouchableHighlight>
+
         <Text style={styles.terms}>
           By sigin in you agree to comply with Terms and contions
-            </Text>
+        </Text>
+
+        <RBSheet
+          ref={ref => {
+            this.RBSheet = ref;
+          }}
+          height={300}
+          duration={250}
+          customStyles={{
+            container: {
+              justifyContent: "center",
+              alignItems: "center"
+            }
+          }}
+        >
+          <ChannelsBottomSheet />
+        </RBSheet>
       </View>
     );
   }
@@ -58,6 +82,10 @@ export default class LoginScreen extends React.Component {
         });
       });
     }
+  }
+
+  test = () => {
+    this.RBSheet.open()
   }
 }
 
