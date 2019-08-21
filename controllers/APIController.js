@@ -1,9 +1,9 @@
-import Global from '../core/Global'
+import UserController from './UserController'
 
 const API = "http://ec2-52-8-197-192.us-west-1.compute.amazonaws.com:10010/api";
 
 async function getUserToken() {
-    let identifier = Global.getUser().id;
+    let identifier = UserController.getUser().id;
     let URL = API + '/stream/usertoken/'+identifier;
     console.log(identifier)
 
@@ -59,9 +59,7 @@ async function signin(email){
         let _url = responseJson['url']
         let components = _url.split('/');
         let token = components[components.length -1];
-
-        console.log('SIGN')
-
+        
         await auth(token)
     }catch(error){
         console.error(error);
@@ -85,7 +83,7 @@ async function auth(token){
         let college = responseJson['college']
         let id = responseJson['jid']
 
-        Global.setUserId(id, college)
+        UserController.setUserId(id, college)
 
         await getUser(id)
     }catch(error){
@@ -119,8 +117,7 @@ async function getUser(identifier){
             nickname: name
         };
 
-        console.log(data);
-        Global.setData(data)
+        UserController.setData(data)
         
         await getChannels(identifier)
 
@@ -147,7 +144,7 @@ async function getChannels(identifier){
             channels.push(channel.id);
         });
 
-        Global.setChannels(channels);
+        UserController.setChannels(channels);
 
         return {
             status: true,

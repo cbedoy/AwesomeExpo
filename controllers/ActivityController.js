@@ -1,6 +1,7 @@
 import {React} from 'react'
 
 import Global from '../core/Global'
+import UserController from '../controllers/UserController'
 import API from '../controllers/APIController'
 import EmbedlyController from '../controllers/EmbedlyController'
 let stream = require('getstream');
@@ -23,7 +24,7 @@ const contents = [
 
 
 function createRandomActivity(type) {
-    let userId = Global.getUser().id;
+    let userId = UserController.getUser().id;
     let streamKey = Global.getStreamKey();
     let streamId = Global.getStreamId();
 

@@ -2,21 +2,20 @@ import React, { Component } from "react";
 import { StyleSheet, View, Image, Text } from "react-native";
 import TimeAgo from 'react-native-timeago';
 import Utils from '../Utils'
-import Global from '../core/Global'
+import UserController from '../controllers/UserController'
 
 export default class ExplorerHeaderView extends Component {
     render() {
         let activity = this.props.activity; 
-        console.log(Global.getUser())
         return (
             <View style={styles.root}>
                 <View style={styles.headerStyle}>
                     <Image
-                        source={{ uri: Global.getUser().avatar }}
+                        source={{ uri: UserController.getUser().avatar }}
                         style={styles.avatarImage}
                     />
                     <View style={styles.headerContent}>
-                        <Text style={styles.nicknameStyle} numberOfLines={1}>{Global.getUser().nickname}</Text>
+                        <Text style={styles.nicknameStyle} numberOfLines={1}>{UserController.getUser().nickname}</Text>
                         <View style={{ flexDirection: 'row' }}>
                             <Image
                                 source={this.favIconFromActivity(activity)}

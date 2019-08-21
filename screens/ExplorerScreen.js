@@ -1,9 +1,7 @@
 import React from 'react';
-import { View, TouchableHighlight, Button, StyleSheet } from 'react-native';
+import { View, TouchableHighlight} from 'react-native';
 import {
   FlatFeed,
-  LikeButton,
-  ReactionIcon,
 } from 'expo-activity-feed';
 
 import ExplorerHeaderView from '../components/ExplorerHeaderView'
@@ -13,7 +11,7 @@ import DividerView from '../components/DividerView'
 import LinkContentView from '../components/LinkContentView'
 import ToolbarOptions from '../components/ToolbarOptions'
 import ReactionsView from '../components/ReactionsView'
-import Global from '../core/Global'
+import UserController from '../controllers/UserController'
 
 
 const FeedActivity = (props) => {
@@ -59,7 +57,7 @@ export default class ExplorerScreen extends React.Component {
     return (
       <FlatFeed
         feedGroup="user"
-        userId={Global.getUser().id}
+        userId={UserController.getUser().id}
         Activity={(props) =>
           <TouchableHighlight onPress={() => this.onClick({ ...props })}>
             <FeedActivity {...props} />
