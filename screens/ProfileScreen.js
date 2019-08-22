@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Dimensions, TouchableHighlight, Image } from 'react-native';
+import { StyleSheet, Dimensions, TouchableHighlight, Image, View } from 'react-native';
 import ProfileHeaderCell from '../components/ProfileHeaderCell'
+import CreditView from '../components/CreditView'
 import UsersIcon from '../images/icons/users.png'
 
 export default class ProfileScreen extends React.Component {
@@ -31,7 +32,10 @@ export default class ProfileScreen extends React.Component {
   };
   render() {
     return (
-      <ProfileHeaderCell />
+      <View style={{flexDirection: "column", flex:1,}}>
+        <ProfileHeaderCell />
+        <CreditView />
+      </View>
     );
   }
 }

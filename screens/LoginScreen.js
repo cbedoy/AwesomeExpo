@@ -142,5 +142,5 @@ const styles = StyleSheet.create({
     marginTop: 64,
     marginLeft: 16,
     marginRight: 16,
-  }
+  },
 });
