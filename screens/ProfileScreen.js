@@ -1,7 +1,6 @@
 import React from 'react';
 import { StyleSheet, Dimensions, TouchableHighlight, Image } from 'react-native';
 import ProfileHeaderCell from '../components/ProfileHeaderCell'
-import ProfileController from '../controllers/ProfileController';
 import UsersIcon from '../images/icons/users.png'
 
 export default class ProfileScreen extends React.Component {
@@ -34,12 +33,6 @@ export default class ProfileScreen extends React.Component {
     return (
       <ProfileHeaderCell />
     );
-  }
-
-  componentDidMount() {
-    /*ProfileController.following().then((results) => {
-      console.log(results)
-    });*/
   }
 }
 

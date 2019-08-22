@@ -1,20 +1,32 @@
 import React from 'react';
 import { Image, View, StyleSheet, Text } from 'react-native';
 import UserController from '../controllers/UserController'
+import ProfileController from '../controllers/ProfileController'
 
 export default class ProfileHeaderCell extends React.Component{
     constructor(props){
         super(props);
 
         this.state = {
-            posts: 0,
-            followers: 0,
             following: 0,
+            followers: 0,
+            posts: 0,
         }
     }
+    
 
     componentDidMount(){
-        
+        ProfileController.following().then((response) => {
+            this.setState({
+              following: response.results.length,
+            })
+        })
+    
+        ProfileController.followers().then((response) => {
+            this.setState({
+                followers: response.results.length,
+            })
+        })
     }
 
     render(){

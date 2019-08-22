@@ -3,27 +3,35 @@ import UserController from './UserController'
 import API from './APIController'
 import Global from '../core/Global'
 
-function following(){
+async function following(){
     let userId = UserController.getUser().id;
     let streamKey = Global.getStreamKey();
     let streamId = Global.getStreamId();
     let type = 'user';
-
     let client = stream.connect(streamKey, null, streamId);
 
-    API.getFeedToken(type, userId).then((response) => {
-        let feedToken = response.feedToken;
-        let feed = client.feed(type, userId, feedToken);
+    let feedResponse = await API.getFeedToken(type, userId);
+    let feedToken = feedResponse.feedToken;
+    let feed = client.feed(type, userId, feedToken);
+    let result = await feed.following({limit: 25, offset: 0});
 
-        console.log(response)
-
-        feed.following({limit: 25, offset: 0}).then((response) => {
-
-            console.log(response)
-
-            return response.results;
-        });
-    });
+    return result;
 }
 
-export default {following}
+async function followers(){
+    let userId = UserController.getUser().id;
+    let streamKey = Global.getStreamKey();
+    let streamId = Global.getStreamId();
+    let type = 'user';
+    let client = stream.connect(streamKey, null, streamId);
+
+    let feedResponse = await API.getFeedToken(type, userId);
+    let feedToken = feedResponse.feedToken;
+    let feed = client.feed(type, userId, feedToken);
+    let result = await feed.followers({limit: 25, offset: 0});
+
+    return result;
+}
+
+
+export default {following, followers}

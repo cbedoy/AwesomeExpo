@@ -31,9 +31,6 @@ const StreamNavigator = createStackNavigator(
     initialRouteName: 'Explorer'
   });
 
-
-
 const StreamContainer = createAppContainer(StreamNavigator);
-
 
 export default StreamContainer
