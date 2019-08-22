@@ -3,6 +3,7 @@ import ExplorerScreen from '../screens/ExplorerScreen'
 import NotificationsScreen from '../screens/NotificationsScreen'
 import ContentProviderScreen from '../screens/ContentProviderScreen'
 import CollegeScreen from '../screens/CollegeScreen'
+import ProfileScreen from '../screens/ProfileScreen'
 
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
@@ -19,6 +20,9 @@ const StreamNavigator = createStackNavigator(
     },
     Detail: { 
       screen: DetailScreen 
+    },
+    Profile: { 
+      screen: ProfileScreen 
     },
     Content: { 
       screen: ContentProviderScreen 

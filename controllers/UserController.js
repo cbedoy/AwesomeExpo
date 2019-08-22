@@ -7,7 +7,6 @@ setUserId = (id, college) => {
 }
 
 setData = (data) => {
-    console.log('setData')
     session.firstName = data.firstName;
     session.lastName = data.lastName;
     session.avatar = data.avatar;
@@ -23,20 +22,10 @@ getUser = () => {
 }
 
 setCollege = (users) => {
-    //let peekUsers = []
-    //let peekDictionary = {}
     users.sort((userOne, userTwo) => 
         userOne.nickname[0] > userTwo.nickname[0]
     );
-    //users.forEach(element => {
-    //    let nickname = element.nickname.toLowerCase();
-    //    if(nickname.includes('kar') || nickname.includes('nes') || nickname.includes('car') || nickname.includes('and')){
-    //        peekUsers.push(element)
-    //
-    //        peekDictionary[element.id] = element;
-    //    }
-    //});
-
+    
     let usersMap = {};
     users.forEach(element => {
         usersMap[element.id] = element;
@@ -51,8 +40,6 @@ getCollege = () => {
 }
 
 getUserFromId = (userId) => {
-    console.log(userId)
-
     if(college.usersMap[userId]){
         return college.usersMap[userId];
     }else{

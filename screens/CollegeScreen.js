@@ -2,6 +2,7 @@ import React from 'react';
 import { FlatList, TouchableHighlight, StyleSheet, Dimensions } from 'react-native';
 import UserCell from '../components/UserCell'
 import UserController from '../controllers/UserController'
+import FollowController from '../controllers/FollowController';
 
 export default class CollegeScreen extends React.Component {
   static navigationOptions = {
@@ -17,20 +18,23 @@ export default class CollegeScreen extends React.Component {
     },
   };
   render() {
-    let users = UserController.getCollege();
+    let dataSource = UserController.getCollege();
     return (
       <FlatList style={styles.list}
-        data={users}
+        data={dataSource}
         ItemSeparatorComponent={this.itemSeparator}
         renderItem={({ item, index }) =>
-          <TouchableHighlight
-            onPress={() => this.handleSelection(item, index)}>
+          <TouchableHighlight onPress={() => this.handleSelection(item, index)}>
             <UserCell source={item} />
           </TouchableHighlight>
         }
         keyExtractor={item => item.id.toString()}
       />
     );
+  }
+
+  componentDidMount() {
+    FollowController.followers()
   }
 }
 

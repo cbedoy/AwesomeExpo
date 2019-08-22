@@ -11,7 +11,10 @@ export default class UserCell extends React.Component{
         return(
             <View style={this.selectedStyle()}>
                 <Image style={styles.avatar} source={{uri: this.props.source.avatar}}/>
-                <Text style={styles.title}>{this.props.source.nickname}</Text>
+                <View style={{flex: 1, flexDirection:'column'}}>
+                    <Text style={styles.title}>{this.props.source.nickname}</Text>
+                    <Text style={styles.email}>{this.props.source.email}</Text>
+                </View>
                 <Button  
                     onPress={() => this.handleFollow()}
                     title="Follow"
@@ -35,10 +38,14 @@ export default class UserCell extends React.Component{
 
 const styles = StyleSheet.create({
     title: {
-        color: '#000',
+        color: '#333',
         fontSize: 18,
-        paddingTop: 8,
-        paddingBottom: 8,
+        paddingTop: 4,
+    },
+    email: {
+        color: '#666',
+        fontSize: 14,
+        paddingBottom: 4,
     },
     avatar: {
         height: 32,

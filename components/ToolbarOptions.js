@@ -2,8 +2,8 @@ import React from 'react';
 import { View, TouchableHighlight, Button, StyleSheet, Image } from 'react-native';
 import ActivityController from '../controllers/ActivityController'
 
-import UsersIcon from '../images/icons/users.png'
 import AddIcon from '../images/icons/add.png'
+import SettingsIcon from '../images/icons/settings.png'
 
 export default class ToolbarOptions extends React.Component{
     constructor(props){
@@ -14,14 +14,14 @@ export default class ToolbarOptions extends React.Component{
         let navigation = this.props.navigation;
         return(
             <View style={styles.root}>
-                <TouchableHighlight activeOpacity={0.5} onPress={() => navigation.navigate('College')}>
-                    <Image style={styles.iconStyle}
-                        source={UsersIcon}
-                    />
-                </TouchableHighlight>
                 <TouchableHighlight activeOpacity={0.5} onPress={() => this.handleAdd()} >
                     <Image style={styles.iconStyle}
                         source={AddIcon}
+                    />
+                </TouchableHighlight>
+                <TouchableHighlight activeOpacity={0.5} onPress={() => navigation.navigate('Profile')}>
+                    <Image style={styles.iconStyle}
+                        source={SettingsIcon}
                     />
                 </TouchableHighlight>
             </View>

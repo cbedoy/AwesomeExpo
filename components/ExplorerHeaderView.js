@@ -44,7 +44,6 @@ export default class ExplorerHeaderView extends Component {
     }
 
     titleFromType = (activity) => {
-        console.log('Metadata type = '+activity.metadataType)
         let type = activity.metadataType;
         switch(activity.metadataType){
             case 'whatsgood':

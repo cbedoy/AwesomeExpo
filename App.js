@@ -8,6 +8,8 @@ import {
 import StreamContainer from './containers/StreamContainer'
 import LoginContainer from './containers/LoginContainer'
 import Global from './core/Global';
+import ProfileHeaderCell from './components/ProfileHeaderCell'
+
 
 export default class App extends React.Component {
 
@@ -22,6 +24,7 @@ export default class App extends React.Component {
 
     Global.subscribe(this)
   }
+
 
   render() {
     if(this.state.session) {
@@ -51,11 +54,12 @@ export default class App extends React.Component {
     }
   } 
 
+
   /*
   render(){
     return(
       <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always' }}>
-        <ExplorerHeaderView />
+        <ProfileHeaderCell />
       </SafeAreaView>
     );
   }

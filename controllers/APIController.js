@@ -67,7 +67,6 @@ async function signin(email){
 }
 
 async function auth(token){
-    console.log('AUTH')
     let URL = API + '/auth/'+token
     try{
         let response = await fetch(URL,
@@ -175,6 +174,7 @@ async function getCollege(){
                     nickname: user.name,
                     avatar: user.avatar,
                     id: user.id,
+                    email: user.email,
                 }
                 users.push(userData);
             }
