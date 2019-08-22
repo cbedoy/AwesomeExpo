@@ -54,12 +54,9 @@ function createRandomActivity(type) {
                 'metadata' : response,
             };
 
-            console.log(activity)
-
             feed.addActivity(activity)
                 .then(function(data) { 
                     console.log("SUCCESS")
-                    console.log(data)
                 })
                 .catch(function(reason) { 
                     console.log(reason)

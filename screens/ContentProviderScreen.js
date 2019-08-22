@@ -28,8 +28,6 @@ export default class ContentProviderScreen extends React.Component {
 
     componentDidMount(){
         let data = Controller.getMetadataFromLink('https://web.whatsapp.com/').then(response => {
-            console.log('componentDidMount')
-
             this.setState({
                 metadata: response,
                 url: response.url,
@@ -41,9 +39,6 @@ export default class ContentProviderScreen extends React.Component {
 
     render() {  
         if (this.state.status){
-            console.log(this.state.status)
-            console.log(this.state.url)
-            console.log(this.state.metadata)
             return (
                 <View>
                   <Text>Content Provider! {this.state.url} Json size {this.state.count}</Text>

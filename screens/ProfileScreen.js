@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Dimensions, TouchableHighlight, Image } from 'react-native';
 import ProfileHeaderCell from '../components/ProfileHeaderCell'
-import FollowController from '../controllers/FollowController';
+import ProfileController from '../controllers/ProfileController';
 import UsersIcon from '../images/icons/users.png'
 
 export default class ProfileScreen extends React.Component {
@@ -37,7 +37,9 @@ export default class ProfileScreen extends React.Component {
   }
 
   componentDidMount() {
-    FollowController.followers()
+    /*ProfileController.following().then((results) => {
+      console.log(results)
+    });*/
   }
 }
 

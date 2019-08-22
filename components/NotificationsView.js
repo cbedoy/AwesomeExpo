@@ -6,8 +6,6 @@ export default class NotificationView extends React.Component{
     constructor(props){
         super(props);
 
-        console.log("NotificationView")
-        console.log(props.data);
     }
 
     render(){

@@ -60,23 +60,6 @@ followers = () => {
     });
 }
 
-following = () => {
-    let userId = UserController.getUser().id;
-    let streamKey = Global.getStreamKey();
-    let streamId = Global.getStreamId();
-    let type = 'user';
 
-    let client = stream.connect(streamKey, null, streamId);
 
-    API.getFeedToken(type, userId).then((response) => {
-        let feedToken = response.feedToken;
-        let feed = client.feed(type, userId, feedToken);
-
-        feed.following({limit: 25, offset: 0}).then((response) => {
-
-            return response;
-        });
-    });
-}
-
-export default {follow, unfollow, followers, following}
+export default {follow, unfollow, followers}

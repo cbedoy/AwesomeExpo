@@ -55,6 +55,23 @@ shuffle = (a) => {
     return a;
 }
 
+query = (text) =>  {
+    let users = getCollege();
+    let queryUsers = [];
+
+    users.forEach(element => {
+        let nickname = element.nickname;
+        let email = element.email;
+        email = email.replace('@dagm8.com', '');
+        if(nickname !== null){
+            nickname = nickname.toLowerCase();
+            if(nickname.includes(text) || email.includes(text)){
+                queryUsers.push(element)
+            }
+        }
+    });
+    return queryUsers;
+}
 
 export default {
     setUserId, 
@@ -63,5 +80,6 @@ export default {
     getUser,
     setCollege,
     getCollege,
-    getUserFromId
+    getUserFromId, 
+    query
 }

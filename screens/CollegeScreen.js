@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, TouchableHighlight, StyleSheet, Dimensions } from 'react-native';
+import { FlatList, TouchableHighlight, StyleSheet, Dimensions, TextInput, View } from 'react-native';
 import UserCell from '../components/UserCell'
 import UserController from '../controllers/UserController'
 import FollowController from '../controllers/FollowController';
@@ -17,20 +17,55 @@ export default class CollegeScreen extends React.Component {
       fontWeight: 'bold',
     },
   };
-  render() {
+
+  constructor(props){
+    super(props);
+
     let dataSource = UserController.getCollege();
+
+    this.state = {
+      text: '',
+      dataSource: dataSource,
+    }
+  }
+  render() {
     return (
-      <FlatList style={styles.list}
-        data={dataSource}
-        ItemSeparatorComponent={this.itemSeparator}
-        renderItem={({ item, index }) =>
-          <TouchableHighlight onPress={() => this.handleSelection(item, index)}>
-            <UserCell source={item} />
-          </TouchableHighlight>
-        }
-        keyExtractor={item => item.id.toString()}
-      />
+      <View style={{flexDirection: "column", flex:1,}}>
+        <TextInput
+          style={styles.input}
+          placeholder="Search users..."
+          onChangeText={(text) => this.handleSearch(text)}
+          value={this.state.text}
+          autoCapitalize='none'
+        />
+        <FlatList style={styles.list}
+          data={this.state.dataSource}
+          ItemSeparatorComponent={this.itemSeparator}
+          renderItem={({ item, index }) =>
+            <TouchableHighlight onPress={() => this.handleSelection(item, index)}>
+              <UserCell source={item} />
+            </TouchableHighlight>
+          }
+          keyExtractor={item => item.id.toString()}
+        />
+      </View>
     );
+  }
+
+  handleSearch(text){
+    this.setState({ text })
+
+    let users = [];
+
+    if(text.length >= 3){
+      users = UserController.query(text);
+    }else{
+      users = UserController.getCollege();
+    }
+
+    this.setState({
+      dataSource: users,
+    })
   }
 
   componentDidMount() {
@@ -38,29 +73,42 @@ export default class CollegeScreen extends React.Component {
   }
 }
 
+let width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
-    flex:1,
+    flex: 1,
     flexDirection: 'row',
   },
-  divider : {
-      minHeight: 1,
-      backgroundColor: '#FAFAFA',
-      width: Dimensions.get('window').width,
+  divider: {
+    minHeight: 1,
+    backgroundColor: '#FAFAFA',
+    width: width,
   },
-  list : {
-      flex:1, 
-      width: Dimensions.get('window').width,
+  list: {
+    width: width,
   },
   title: {
-      color: '#333',
-      fontSize: 20,
-      margin: 16,
+    color: '#333',
+    fontSize: 20,
+    margin: 16,
   },
   button: {
-      margin:8, 
-      flexDirection: 'row-reverse', 
-      flex: 1, 
-  }
+    margin: 8,
+    flexDirection: 'row-reverse',
+    flex: 1,
+  },
+  input: {
+    height: 48,
+    width: width - 16,
+    color: '#666',
+    backgroundColor: '#FAFAFA',
+    borderWidth: 1,
+    borderColor: '#e0e0e0',
+    borderRadius: 4,
+    margin: 8,
+    paddingLeft: 8,
+    paddingRight: 8,
+    fontSize: 18,
+  },
 });

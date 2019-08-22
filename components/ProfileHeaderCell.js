@@ -1,7 +1,6 @@
 import React from 'react';
 import { Image, View, StyleSheet, Text } from 'react-native';
 import UserController from '../controllers/UserController'
-import FollowController from '../controllers/FollowController'
 
 export default class ProfileHeaderCell extends React.Component{
     constructor(props){
