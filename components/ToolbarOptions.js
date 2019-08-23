@@ -3,6 +3,7 @@ import { View, TouchableHighlight, Button, StyleSheet, Image } from 'react-nativ
 import ActivityController from '../controllers/ActivityController'
 
 import AddIcon from '../images/icons/add.png'
+import ChannelsIcon from '../images/icons/channels.png'
 import SettingsIcon from '../images/icons/settings.png'
 
 export default class ToolbarOptions extends React.Component{
@@ -17,6 +18,11 @@ export default class ToolbarOptions extends React.Component{
                 <TouchableHighlight activeOpacity={0.5} onPress={() => this.handleAdd()} >
                     <Image style={styles.iconStyle}
                         source={AddIcon}
+                    />
+                </TouchableHighlight>
+                <TouchableHighlight activeOpacity={0.5} onPress={() => navigation.navigate('Channels')} >
+                    <Image style={styles.iconStyle}
+                        source={ChannelsIcon}
                     />
                 </TouchableHighlight>
                 <TouchableHighlight activeOpacity={0.5} onPress={() => navigation.navigate('Profile')}>

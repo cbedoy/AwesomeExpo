@@ -1,8 +1,7 @@
 import React from 'react';
 import { Image, View, StyleSheet, Text } from 'react-native';
 
-export default class ChannelCell extends React.Component{
-
+export default class ChannelItem extends React.Component{
     constructor(props){
         super(props);
     }
@@ -11,7 +10,10 @@ export default class ChannelCell extends React.Component{
         return(
             <View style={this.selectedStyle()}>
                 <Image style={styles.avatar} source={{uri: this.props.source.avatar}}/>
-                <Text style={styles.title}>{this.props.source.name}</Text>
+                <View >
+                    <Text style={styles.title}>{this.props.source.name}</Text>
+                    <Text style={styles.description}>{this.props.source.id}</Text>
+                </View>
             </View>
         );
     }
@@ -27,18 +29,24 @@ export default class ChannelCell extends React.Component{
 
 const styles = StyleSheet.create({
     title: {
-        color: '#000',
-        fontSize: 18,
-        paddingTop: 8,
+        color: '#333',
+        fontSize: 22,
+        alignContent: 'center',
+        paddingTop: 16,
+    },
+    description : {
+        color: '#666',
+        fontSize: 14,
+        alignContent: 'center',
         paddingBottom: 8,
     },
     avatar: {
-        height: 32,
-        width: 32,
+        height: 64,
+        width: 64,
         backgroundColor: '#E0E0E0',
         margin: 8, 
         borderColor: '#FFF',
-        borderRadius: 16,
+        borderRadius: 8,
     },
     buttonContainer: {
       flex: 1,

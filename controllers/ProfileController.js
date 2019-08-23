@@ -2,6 +2,7 @@ let stream = require('getstream');
 import UserController from './UserController'
 import API from './APIController'
 import Global from '../core/Global'
+import Follow from '../core/Follow'
 
 async function following(){
     let userId = UserController.getUser().id;
@@ -13,9 +14,11 @@ async function following(){
     let feedResponse = await API.getFeedToken(type, userId);
     let feedToken = feedResponse.feedToken;
     let feed = client.feed(type, userId, feedToken);
-    let result = await feed.following({limit: 25, offset: 0});
+    let response = await feed.following({limit: 25, offset: 0});
 
-    return result;
+    setFollowing(response.results)
+
+    return response;
 }
 
 async function followers(){
@@ -28,10 +31,37 @@ async function followers(){
     let feedResponse = await API.getFeedToken(type, userId);
     let feedToken = feedResponse.feedToken;
     let feed = client.feed(type, userId, feedToken);
-    let result = await feed.followers({limit: 25, offset: 0});
+    let response = await feed.followers({limit: 25, offset: 0});
 
-    return result;
+    setFollowers(response.results)
+
+    return response;
+}
+
+function setFollowers(results){
+    Follow.followers = getUserListFromResults(results);
+}
+function setFollowing(results){
+    Follow.following = getUserListFromResults(results);
+}
+
+function getUserListFromResults(results){
+    let users = [];
+
+    results.forEach(element => {
+        let target = element.target_id;
+        let components = target.split(':')
+        let userId = components[components.length -1];
+
+        users.push(userId);
+    });
+
+    return users;
+}
+
+function getFollowInfo(){
+    return Follow;
 }
 
 
-export default {following, followers}
+export default {following, followers, getFollowInfo}

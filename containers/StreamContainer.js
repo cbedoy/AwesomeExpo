@@ -4,6 +4,7 @@ import NotificationsScreen from '../screens/NotificationsScreen'
 import ContentProviderScreen from '../screens/ContentProviderScreen'
 import CollegeScreen from '../screens/CollegeScreen'
 import ProfileScreen from '../screens/ProfileScreen'
+import ChannelsScreen from '../screens/ChannelsScreen'
 
 import {createStackNavigator, createAppContainer} from 'react-navigation';
 
@@ -26,6 +27,9 @@ const StreamNavigator = createStackNavigator(
     },
     Content: { 
       screen: ContentProviderScreen 
+    },
+    Channels: { 
+      screen: ChannelsScreen 
     },
   },{
     initialRouteName: 'Explorer'

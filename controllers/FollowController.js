@@ -36,7 +36,7 @@ unfollow = (user) => {
 
         let feed = client.feed(type, userId, feedToken);
 
-        feed.unfollow('timeline', user).then((response) => {
+        feed.unfollow(type, user).then((response) => {
             console.log(response);
         })
     });

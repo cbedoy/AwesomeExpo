@@ -3,6 +3,7 @@ import { FlatList, TouchableHighlight, StyleSheet, Dimensions, TextInput, View }
 import UserCell from '../components/UserCell'
 import UserController from '../controllers/UserController'
 import FollowController from '../controllers/FollowController';
+import FollowCollegeProvider from '../providers/FollowCollegeProvider'
 
 export default class CollegeScreen extends React.Component {
   static navigationOptions = {
@@ -21,13 +22,15 @@ export default class CollegeScreen extends React.Component {
   constructor(props){
     super(props);
 
-    let dataSource = UserController.getCollege();
+    let dataSource = FollowCollegeProvider.getCollegeWithFollow();
 
     this.state = {
       text: '',
       dataSource: dataSource,
     }
   }
+
+
   render() {
     return (
       <View style={{flexDirection: "column", flex:1,}}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlatList, TouchableHighlight, View, Dimensions, StyleSheet, Text, Button } from 'react-native';
 import APIController from '../controllers/APIController'
-import ChannelCell from '../components/ChannelCell'
+import ChannelSheetItem from './ChannelSheetItem'
 import Global from '../core/Global'
 
 export default class ChannelBottomSheet extends React.Component {
@@ -66,7 +66,7 @@ export default class ChannelBottomSheet extends React.Component {
                     renderItem={({item, index}) => 
                         <TouchableHighlight
                             onPress={() => this.handleSelection(item, index)}>
-                             <ChannelCell source={item}/>
+                             <ChannelSheetItem source={item}/>
                         </TouchableHighlight>
                     }
                     keyExtractor={item => item.id.toString()}

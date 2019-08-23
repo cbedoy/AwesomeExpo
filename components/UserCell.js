@@ -17,10 +17,25 @@ export default class UserCell extends React.Component{
                 </View>
                 <Button  
                     onPress={() => this.handleFollow()}
-                    title="Follow"
+                    title={this.titleFromData()}
                 />
             </View>
         );
+    }
+
+    titleFromData = () => {
+        let source = this.props.source;
+        let following = source.following;
+        let followingYou = source.followingYou;
+        if(followingYou && following){
+            return "Friends!";
+        } else if(followingYou){
+            return "Follow too"
+        } else if (following){
+            return "Unfollow"
+        } else {
+            return "Follow"
+        }
     }
 
     selectedStyle = () => {
@@ -32,7 +47,19 @@ export default class UserCell extends React.Component{
     }
 
     handleFollow = () => {
-        FollowController.follow(this.props.source.id)
+        let source = this.props.source;
+        let following = source.following;
+        let followingYou = source.followingYou;
+
+        if(followingYou && following){
+            FollowController.unfollow(this.props.source.id)
+        } else if(followingYou){
+            FollowController.follow(this.props.source.id)
+        } else if (following){
+            FollowController.unfollow(this.props.source.id)
+        } else {
+            FollowController.follow(this.props.source.id)
+        }
     }
 }
 
