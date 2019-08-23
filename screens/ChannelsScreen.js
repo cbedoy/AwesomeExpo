@@ -109,16 +109,18 @@ export default class ChannelsScreen extends React.Component {
   }  
 
   handleSelection(item, index){
+    let navigation = this.props.navigation;
 
+    navigation.navigate('Chat', {
+      selectedChannel: item
+    })
   }
 
   handleSearch(text){
-
     this.setState({ text })
 
     if(text.length > 3){
       let channels = this.state.dataSource;
-
       let query = []
 
       channels.forEach(element => {
