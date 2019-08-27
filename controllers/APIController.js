@@ -5,7 +5,6 @@ const API = "http://ec2-52-8-197-192.us-west-1.compute.amazonaws.com:10010/api";
 async function getUserToken() {
     let identifier = UserController.getUser().id;
     let URL = API + '/stream/usertoken/'+identifier;
-    console.log(identifier)
 
     try{
         let response = await fetch(URL,

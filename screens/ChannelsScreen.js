@@ -57,7 +57,6 @@ export default class ChannelsScreen extends React.Component {
               let description = channel.description;
               let avatar = channel.avatar
               let components = description.split(' and ');
-              console.log(components)
               components.forEach(element => {
                 if(element !== sessionId){
                   let userInfo = UserController.getUserFromId(element);
