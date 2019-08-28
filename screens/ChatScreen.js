@@ -1,7 +1,30 @@
 import React from 'react'
+import { View } from 'react-native' 
 import { GiftedChat } from 'react-native-gifted-chat'
 import UserController from '../controllers/UserController'
 import ChatController from '../controllers/ChatController'
+import ChatMessageInView from '../chatcomponents/ChatMessageInView'
+import ChatMessageOutView from '../chatcomponents/ChatMessageOutView'
+
+
+const ChatMessage = (props) =>  {
+    let messageView;
+
+    let messageSender = props.currentMessage.user._id;
+
+    if(messageSender !== UserController.getUser().id){
+        messageView = <ChatMessageInView {...props}/>
+    }else{
+        messageView = <ChatMessageOutView {...props}/>
+    }
+
+    return(
+        <View>
+            {messageView}
+        </View>
+    );
+}
+
 
 export default class ChatScreen extends React.Component {
     static navigationOptions = {
@@ -51,11 +74,13 @@ export default class ChatScreen extends React.Component {
         console.log(messageText)
         let result = ChatController.prepareMessage(messageText);
 
+        /*
         if(typeof result === 'string' || result instanceof String){
             this.setState((previousState) => ({
                 messages: GiftedChat.append(previousState.messages, messages),
             }));
         }
+        */
       }
 
     render() {
@@ -71,6 +96,9 @@ export default class ChatScreen extends React.Component {
                     name: userInfo.nickname,
                     avatar: userInfo.avatar
                 }}
+                renderMessage={(props) => 
+                    <ChatMessage {...props}/>
+                }
             />
         )
     }

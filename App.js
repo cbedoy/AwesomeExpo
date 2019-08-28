@@ -10,6 +10,9 @@ import LoginContainer from './containers/LoginContainer'
 import Global from './core/Global';
 import ProfileHeaderCell from './components/ProfileHeaderCell'
 
+import ChatMessageInView from './chatcomponents/ChatMessageInView'
+import ChatMessageOutView from './chatcomponents/ChatMessageOutView'
+import ChatMessageEventView from './chatcomponents/ChatMessageEventView'
 
 export default class App extends React.Component {
 
@@ -25,7 +28,7 @@ export default class App extends React.Component {
     Global.subscribe(this)
   }
 
-
+  
   render() {
     if(this.state.session) {
       let apiKey = this.state.streamKey
@@ -53,15 +56,4 @@ export default class App extends React.Component {
     }
   } 
 
-
-  /*
-  render(){
-    return(
-      <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always' }}>
-        <ProfileHeaderCell />
-      </SafeAreaView>
-    );
-  }
-  */
-  
 }

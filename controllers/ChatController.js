@@ -14,6 +14,13 @@ var pubnub = new PubNub({
     ssl: true
 })
 
+subscribe = (listener) => {
+
+}
+
+unsubscribe = (listener) => {
+
+}
 
 join = (channel) =>{
     _channel = channel;
@@ -77,6 +84,7 @@ function prepareMessages(dataSource){
         let nickname = user.nickname;
         let avatar = user.avatar;
         let timestamp = entry.timestamp;
+        let metadata = entry.metadata;
         let message = {
             _id: entry.uuid,
             text: entry.message,
@@ -88,6 +96,31 @@ function prepareMessages(dataSource){
             }
         };
 
+        if(metadata){
+            if(metadata.images){
+                let images = metadata.images;
+                if (images.length > 0){
+                    let image = images[0]
+                    if (image.url){
+                        message.thumbnail = image.url;
+                    }
+                }
+            }
+            let title = metadata.title
+            let subtile = metadata.provider_url
+            let description = metadata.description
+
+            if (title === 'null' || title == null)
+                title = metadata.provider_name
+
+            if (subtile === 'null' || subtile == null)
+                subtile = metadata.provider_url
+
+            message.title = title
+            message.subtitle = subtile;
+            message.description = description
+        }
+
         results.push(message)
     });
     return results;
@@ -95,4 +128,4 @@ function prepareMessages(dataSource){
 
 
 
-export default {prepareMessage, join, leave, loadHistory, prepareMessages}
+export default {prepareMessage, join, leave, loadHistory, prepareMessages, subscribe, unsubscribe}
