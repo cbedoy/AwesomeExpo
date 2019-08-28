@@ -25,14 +25,13 @@ const styles = StyleSheet.create({
         marginTop: 8,
         marginLeft: 8,
         marginBottom: 8,
-        marginRight: 64,
         aspectRatio: 1, 
         borderRadius: commonPadding,
     },
     messageContainerIn: {
         padding: commonPadding,
         marginTop: commonPadding,
-        marginRight: 56,
+        marginRight: 64,
         marginLeft: 8,
         marginBottom: commonPadding,
         borderRadius: commonPadding,
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
         borderRadius: commonPadding,
         borderWidth: 1,
         borderColor: Colors.backgroundColor,
-        backgroundColor: Colors.primaryColor,
+        backgroundColor: Colors.backgroundMessageOutColor,
     },
     messageIn: {
         color: '#333',
@@ -68,6 +67,7 @@ const styles = StyleSheet.create({
     },
     mediaContainer : {
         marginTop: 8,
+        marginRight: 64,
     },
     titleIn : {
         fontSize: 16,
