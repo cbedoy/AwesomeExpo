@@ -31,12 +31,12 @@ export default class LinkContentView extends Component {
         let description = metadata.description
         let title = metadata.title
         let subtile = metadata.provider_url
-        if (images.length > 0){
+        if (images && images.length > 0){
             let image = images[0]
             if (image.url){
                 imageURL = image.url
             }
-        }else if(images.length === 0 && type === 'image'){
+        }else if((!images || images.length === 0)&& type === 'image'){
             imageURL = metadata.url
         }
 

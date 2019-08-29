@@ -2,7 +2,7 @@ import {StyleSheet} from 'react-native'
 import Colors from '../core/Colors'
 
 const commonPadding = 8
-const textSize = 14
+const textSize = 16
 const avatarSize = 40
 
 const styles = StyleSheet.create({
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         marginBottom: commonPadding,
         borderRadius: commonPadding,
         borderWidth: 1,
-        borderColor: Colors.backgroundMessageColor,
+        borderColor: Colors.borderColor,
         backgroundColor: Colors.backgroundMessageColor,
     },
     messageContainerOut: {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         marginBottom: commonPadding,
         borderRadius: commonPadding,
         borderWidth: 1,
-        borderColor: Colors.backgroundColor,
+        borderColor: Colors.borderColor,
         backgroundColor: Colors.backgroundMessageOutColor,
     },
     messageIn: {
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         fontSize: textSize,
     },
     messageOut: {
-        color: '#fff',
+        color: '#333',
         fontSize: textSize,
     },
     eventMessage : {
@@ -71,28 +71,28 @@ const styles = StyleSheet.create({
     },
     titleIn : {
         fontSize: 16,
-        color: '#666',
-        marginTop: commonPadding,
-        marginLeft: commonPadding,
-        marginRight: commonPadding,
-    },
-    descriptionIn : {
-        fontSize: 14,
-        color: '#999',
+        color: '#333',
         marginTop: commonPadding,
         marginLeft: commonPadding,
         marginRight: commonPadding,
     },
     titleOut : {
         fontSize: 16,
-        color: '#FFF',
+        color: '#333',
+        marginTop: commonPadding,
+        marginLeft: commonPadding,
+        marginRight: commonPadding,
+    },
+    descriptionIn : {
+        fontSize: 14,
+        color: '#666',
         marginTop: commonPadding,
         marginLeft: commonPadding,
         marginRight: commonPadding,
     },
     descriptionOut : {
         fontSize: 14,
-        color: '#DDD',
+        color: '#666',
         marginTop: commonPadding,
         marginLeft: commonPadding,
         marginRight: commonPadding,

@@ -65,5 +65,38 @@ function createRandomActivity(type) {
     })
 }
 
+function createActivity(channel, messageText, metadata, metadataType, feedType) {
+    let userId = UserController.getUser().id;
+    let streamKey = Global.getStreamKey();
+    let streamId = Global.getStreamId();
 
-export default {createRandomActivity}
+    let client = stream.connect(streamKey, null, streamId);
+
+    API.getFeedToken(feedType, userId).then((response) => {
+        let feedToken = response.feedToken;
+
+        let feed = client.feed(feedType, userId, feedToken);
+
+        let activity = {
+            'actor' : userId,
+            'verb' : 'resource',
+            'object' : messageText,
+            //'to': channel,    "to field should be a list of feeds
+            'metadataType' : metadataType,
+            'metadata' : metadata,
+        };
+
+        feed.addActivity(activity)
+            .then(function(data) { 
+                console.log("SUCCESS")
+            })
+            .catch(function(reason) { 
+                console.log(reason)
+            }); 
+            
+        
+    });
+}
+
+
+export default {createRandomActivity, createActivity}

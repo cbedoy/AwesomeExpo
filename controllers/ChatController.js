@@ -2,6 +2,8 @@ import Utils from '../Utils'
 import PubNub from 'pubnub';
 import EmbedlyController from '../controllers/EmbedlyController'
 import UserController from '../controllers/UserController';
+import ActivityController from './ActivityController';
+
 
 const uuidv4 = require('uuid/v4');
 
@@ -32,7 +34,7 @@ leave = (channel) =>{
     pubnub.unsubscribe([channel])
 }
 
-publish = (messageTex, metadata, type) => {
+async function publish(messageTex, metadata, type){
     let message = {
         message: messageTex,
         timestamp: Math.floor(Date.now() / 1000),
@@ -46,13 +48,12 @@ publish = (messageTex, metadata, type) => {
         message.metadata = metadata
     }
 
-    pubnub.publish({
+    let response = await pubnub.publish({
         message: message,
         channel: _channel,
-    }, function (status, response){
-        console.log(status)
-        console.log(response)
     })
+
+    return response;
 }
 
 async function loadHistory(){
@@ -64,14 +65,29 @@ async function loadHistory(){
 }
 
 function prepareMessage(messageText){
-    if(Utils.isValidUrl(messageText)){
-        EmbedlyController.getMetadataFromLink(messageText).then((metadata) => {
-            publish(messageText, metadata, 'link')
-        })
+    let matches = Utils.extractURL(messageText);
+    if(matches && matches.length > 0){
+        let urlString = matches[0];
+        if(Utils.isValidUrl(urlString)){
+            EmbedlyController.getMetadataFromLink(urlString).then((metadata) => {
+                let metadataType = 'link'
+                publish(messageText, metadata, metadataType).then((response) => {
+                    if(response.timetoken){
+                        ActivityController.createActivity(_channel, messageText, metadata, metadataType, 'user')
+                    }
+                })
+            })
+        }
     }else{
-        publish(messageText, null, null);
+        publish(messageText, null, null).then((response) => {
+            if(response.timetoken){
+
+            }
+        })
     }
 }
+
+
 
 function prepareMessages(dataSource){
     let results = []

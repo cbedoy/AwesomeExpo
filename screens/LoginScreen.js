@@ -72,6 +72,7 @@ export default class LoginScreen extends React.Component {
     );
   }
 
+  
   login = () => {
     let value = this.state.text; 
     if (value.length !== 0) {

@@ -8,19 +8,14 @@ export default class ChatMessageOutView extends React.Component{
     render(){
         let styles = ChatStyles.styles;
         let dataSource = this.props.currentMessage;
-        let user = dataSource.user;
         let messageText = dataSource.text;
         let thumbnail = dataSource.thumbnail;
         let title = dataSource.title;
         let subtitle = dataSource.description;
         let createdAt = dataSource.createdAt;
-        let nextMessage = dataSource.nextMessage;
-
-
         let thumnailView;
         let titleView;
         let subtitleView;
-        let avatarView;
 
         if(thumbnail){
             thumnailView = <Image 

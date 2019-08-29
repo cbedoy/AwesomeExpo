@@ -70,23 +70,14 @@ export default class ChatScreen extends React.Component {
         let message = messages[0];
         let messageText = message.text;
 
-
-        console.log(messageText)
         let result = ChatController.prepareMessage(messageText);
-
-        /*
-        if(typeof result === 'string' || result instanceof String){
-            this.setState((previousState) => ({
-                messages: GiftedChat.append(previousState.messages, messages),
-            }));
-        }
-        */
       }
 
     render() {
         let userInfo = UserController.getUser();
         return (
-            <GiftedChat
+            <View style={{backgroundColor: '#FAFAFA', flex: 1,}}>
+                <GiftedChat
                 placeholder='Write a message...'
                 messages={this.state.messages}
                 inverted={false}
@@ -100,6 +91,7 @@ export default class ChatScreen extends React.Component {
                     <ChatMessage {...props}/>
                 }
             />
+            </View>
         )
     }
 }

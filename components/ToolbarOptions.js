@@ -20,16 +20,6 @@ export default class ToolbarOptions extends React.Component{
                         source={AddIcon}
                     />
                 </TouchableHighlight>
-                <TouchableHighlight activeOpacity={0.5} onPress={() => navigation.navigate('Channels')} >
-                    <Image style={styles.iconStyle}
-                        source={ChannelsIcon}
-                    />
-                </TouchableHighlight>
-                <TouchableHighlight activeOpacity={0.5} onPress={() => navigation.navigate('Profile')}>
-                    <Image style={styles.iconStyle}
-                        source={SettingsIcon}
-                    />
-                </TouchableHighlight>
             </View>
         );
     }

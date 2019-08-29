@@ -28,4 +28,8 @@ function isValidUrl(url){
     return (res !== null)
 }
 
-export default {avatarFromNickname, isValidUrl}
+function extractURL(text){
+    return text.match(/\bhttps?:\/\/\S+/gi);
+}
+
+export default {avatarFromNickname, isValidUrl, extractURL}

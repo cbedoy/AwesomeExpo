@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, View, StyleSheet, Text, Button } from 'react-native';
 import FollowController from '../controllers/FollowController'
+import Colors from '../core/Colors'
 
 export default class UserCell extends React.Component{
     constructor(props){
@@ -17,10 +18,15 @@ export default class UserCell extends React.Component{
                 </View>
                 <Button  
                     onPress={() => this.handleFollow()}
+                    color={this.actionColor()}
                     title={this.titleFromData()}
                 />
             </View>
         );
+    }
+
+    actionColor = () => {
+        return Colors.primaryColor
     }
 
     titleFromData = () => {

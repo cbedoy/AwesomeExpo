@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, TouchableHighlight, Dimensions, FlatList, TextInput, StyleSheet } from 'react-native';
 import ChannelItem from '../components/ChannelItem'
-import UserController from '../controllers/UserController'
-import APIController from '../controllers/APIController'
+import ChannelsController from '../controllers/ChannelsController'
 
 export default class ChannelsScreen extends React.Component {
   static navigationOptions = {
@@ -30,58 +29,14 @@ export default class ChannelsScreen extends React.Component {
   }
 
   componentDidMount() {
-      let userId = UserController.getUser().id;
-
-      APIController.getChannelsData(userId).then((response) => {
-        let channels = this.state.channels;
-
-        let sessionId = UserController.getUser().id;
-
-        response.forEach(channel => {
-            let type = channel.type;
-            if(type !== 'p2p'){
-                let channelId = channel.id;
-                let description = channel.description;
-                let avatar = channel.avatar
-
-                if(avatar !== null){
-                    channels.push({
-                        id: channelId,
-                        name: description,
-                        avatar: avatar,
-                        selected: false,
-                    })
-                }
-            }else {
-              let channelId = channel.id;
-              let description = channel.description;
-              let avatar = channel.avatar
-              let components = description.split(' and ');
-              components.forEach(element => {
-                if(element !== sessionId){
-                  let userInfo = UserController.getUserFromId(element);
-                  description = userInfo.nickname;
-                  avatar = userInfo.avatar;
-
-                  if(avatar !== null){
-                    channels.push({
-                        id: channelId,
-                        name: description,
-                        avatar: avatar,
-                        selected: false,
-                    })
-                  }
-                }
-              });
-            }
-        });
-
+      ChannelsController.prepareChannels().then((channels) => {
         this.setState({
-            channels: channels,
-            dataSource: channels,
+          channels: channels,
+          dataSource: channels,
         })
       })
   }
+
 
   render() {
     return (

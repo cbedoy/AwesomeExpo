@@ -17,17 +17,6 @@ export default class ProfileScreen extends React.Component {
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-      headerRight: (
-        <TouchableHighlight activeOpacity={0.5} onPress={() => navigation.navigate('College')}>
-          <Image style={{height: 25,
-                          width: 25,
-                          marginRight: 8,
-                          marginLeft: 8,
-                          resizeMode: 'stretch'}}
-              source={UsersIcon}
-          />
-        </TouchableHighlight>
-      ),
     }
   };
   render() {

@@ -1,16 +1,31 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Linking } from "react-native";
+import Utils from '../Utils'
 
 export default class ContentView extends Component {
     render() {
       let object = this.props.activity.object; 
       return (
         <View style={styles.root}>
-          <Text style={styles.bodyText}>
+          <Text style={styles.bodyText} onPress={() => this.openUrl(object)}>
             {object}
           </Text>
         </View>
       );
+    }
+
+    openUrl = (object) => {
+      let elements = Utils.extractURL(object);
+      if(elements){
+        let url = elements[0];
+        Linking.canOpenURL(url).then(supported => {
+          if (supported) {
+            Linking.openURL(url);
+          } else {
+            console.log('Don\'t know how to open URI: ' + url);
+          }
+        });
+      }
     }
   }
   

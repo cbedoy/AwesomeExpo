@@ -3,6 +3,19 @@ import URLProviders from '../providers/URLProviders'
 
 const API = "https://api.embedly.com";
 const key = 'e33332a0146045eea14b082e9f39e90e'
+const removedKeys = [
+    'authors',
+    'cache_age',
+    'entities',
+    'favicon_colors',
+    'keywords',
+    'language',
+    'lead',
+    'media',
+    'offset',
+    'related',
+    'app_links'
+]
 
 async function getMetadataFromLink(link) {
     let URL = API + '/1/extract?url='+link+'&key='+key;
@@ -17,8 +30,13 @@ async function getMetadataFromLink(link) {
                 },
             }
         );
-        let responseJson = await response.json();
-        return responseJson;
+        let json = await response.json();
+
+        removedKeys.forEach(key => {
+            delete json[key]
+        });
+
+        return json;
     }catch(error){
         console.error(error);
     }
