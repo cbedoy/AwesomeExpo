@@ -64,6 +64,28 @@ async function loadHistory(){
     return response;
 }
 
+async function lastMessages(channelsIds){
+    let response = await pubnub.fetchMessages({
+        channels: channelsIds, 
+        count: 1,
+    })
+
+    let channels = response.channels;
+    let results = {};
+
+    Object.keys(channels).forEach((key) => {
+        let channel = channels[key];
+        if(channel && channel.length>0){
+            let result = channel[0]
+            let message = result.message;
+
+            results[key] = message;
+        }
+    });
+
+    return results;
+}
+
 function prepareMessage(messageText){
     let matches = Utils.extractURL(messageText);
     if(matches && matches.length > 0){
@@ -144,4 +166,5 @@ function prepareMessages(dataSource){
 
 
 
-export default {prepareMessage, join, leave, loadHistory, prepareMessages, subscribe, unsubscribe}
+export default {prepareMessage, join, leave, loadHistory, prepareMessages, 
+    subscribe, unsubscribe, lastMessages}

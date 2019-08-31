@@ -27,6 +27,10 @@ export default class ProfileHeaderCell extends React.Component{
                 followers: response.results.length,
             })
         })
+
+        ProfileController.posts().then((response) => {
+            
+        })
     }
 
     render(){

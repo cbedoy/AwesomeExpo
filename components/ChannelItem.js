@@ -26,10 +26,19 @@ export default class ChannelItem extends React.Component{
                 <View style={{flex:1, marginRight: 8}}>
                     <Text style={styles.date}><TimeAgo>{new Date()}</TimeAgo></Text>
                     <Text style={styles.title} numberOfLines={1}>{channel.name}</Text>
-                    <Text style={styles.description} numberOfLines={1}>No messages</Text>
+                    <Text style={styles.description} numberOfLines={1}>{this.lastMessage(channel)}</Text>
                 </View>
             </View>
         );
+    }
+
+    lastMessage = (channel) => {
+        let lastMessage = channel.lastMessage;
+
+        if(!lastMessage)
+            return 'No messages'
+        else 
+            return lastMessage.message;
     }
 
     abbreviationFromName = (channel) => {

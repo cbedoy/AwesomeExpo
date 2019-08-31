@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TouchableHighlight, Dimensions, FlatList, TextInput, StyleSheet } from 'react-native';
 import ChannelItem from '../components/ChannelItem'
 import ChannelsController from '../controllers/ChannelsController'
+import ChatController from '../controllers/ChatController'
 
 export default class ChannelsScreen extends React.Component {
   static navigationOptions = {
@@ -30,14 +31,28 @@ export default class ChannelsScreen extends React.Component {
 
   componentDidMount() {
       ChannelsController.prepareChannels().then((channels) => {
-        this.setState({
-          channels: channels,
-          dataSource: channels,
+        let channelsId = [];
+
+        channels.forEach(element => {
+          channelsId.push(element.id)
+        });
+
+        ChatController.lastMessages(channelsId).then((messages) => {
+          Object.keys(messages).forEach((key) => {
+            let targetChannel = channels.find(it => it.id === key);
+            if(targetChannel){
+              targetChannel.lastMessage = messages[key]
+            }
+          })
+          
+          this.setState({
+            channels: channels,
+            dataSource: channels,
+          })
         })
       })
   }
-
-
+  
   render() {
     return (
       <View style={{flexDirection: "column", flex:1,}}>

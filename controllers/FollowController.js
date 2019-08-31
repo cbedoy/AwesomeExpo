@@ -7,7 +7,6 @@ follow = (user) => {
     let userId = UserController.getUser().id;
     let streamKey = Global.getStreamKey();
     let streamId = Global.getStreamId();
-
     let client = stream.connect(streamKey, null, streamId);
 
     let type = 'user';

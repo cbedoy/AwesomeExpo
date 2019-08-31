@@ -38,6 +38,22 @@ async function followers(){
     return response;
 }
 
+async function posts(){
+    let userId = UserController.getUser().id;
+    let streamKey = Global.getStreamKey();
+    let streamId = Global.getStreamId();
+    let client = stream.connect(streamKey, null, streamId);
+    let type = 'user';
+
+    let feedResponse = await API.getFeedToken(type, userId);
+    let feedToken = feedResponse.feedToken;
+    let feed = client.feed(type, userId, feedToken);
+
+    let response = await feed.get();
+
+    console.log(response)
+}
+
 function setFollowers(results){
     Follow.followers = getUserListFromResults(results);
 }
@@ -64,4 +80,4 @@ function getFollowInfo(){
 }
 
 
-export default {following, followers, getFollowInfo}
+export default {following, followers, getFollowInfo, posts}

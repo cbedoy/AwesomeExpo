@@ -52,7 +52,7 @@ const StreamNavigator = createBottomTabNavigator({
   College: CollegeStack,
   Profile: ProfileStack
 }, {
-  initialRouteName: 'Explorer',
+  initialRouteName: 'Channels',
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, horizontal, tintColor }) => {
       const { routeName } = navigation.state;
